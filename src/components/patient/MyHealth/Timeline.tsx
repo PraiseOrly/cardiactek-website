@@ -1,6 +1,6 @@
 import { Activity as ActivityIcon } from 'lucide-react';
 import React from 'react';
-import PatientHistory from './PatientHistory';
+import PatientHistory from './Medications';
 import PersonalInfo from './PersonalInfo';
 import PhysicalExam from './PhysicalExam';
 
