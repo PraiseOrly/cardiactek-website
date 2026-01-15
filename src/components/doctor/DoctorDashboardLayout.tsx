@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import DashboardHeader from "../shared/DashboardHeader";
 import DashboardSidebar from "./DoctorSidebar";
 
 interface DashboardLayoutProps {
@@ -83,7 +82,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, userName })
 				)}
 
 				<div className="flex-1 flex flex-col min-w-0">
-					<header className="sticky top-0 z-40 bg-white border-b border-gray-200">
+					<header className="sticky top-0 z-40">
 						<DashboardHeader
 							role="doctor"
 							userName={userName}

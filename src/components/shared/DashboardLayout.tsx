@@ -99,7 +99,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
 				{/* Main content */}
 				<div className="flex-1 flex flex-col min-w-0">
-					<header className="sticky top-0 z-40 bg-white border-b border-gray-200">
+					<header className="sticky top-0 z-40">
 						<DashboardHeader
 							role={role}
 							userName={userName}

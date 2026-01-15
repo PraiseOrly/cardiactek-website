@@ -1,12 +1,12 @@
 import {
-    ActivityIcon,
-    AlertCircleIcon,
-    DropletsIcon,
-    HeartIcon,
-    TargetIcon,
-    ThermometerIcon,
-    TrendingDownIcon,
-    TrendingUpIcon
+  ActivityIcon,
+  AlertCircleIcon,
+  DropletsIcon,
+  HeartIcon,
+  TargetIcon,
+  ThermometerIcon,
+  TrendingDownIcon,
+  TrendingUpIcon
 } from 'lucide-react';
 import React, { useState } from 'react';
 
@@ -85,22 +85,6 @@ const HealthProfile: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Health Overview Header */}
-      <div className="bg-white shadow-sm rounded-lg overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-          <div>
-            <h2 className="text-lg font-medium text-gray-900">Health Profile Overview</h2>
-            <p className="text-sm text-gray-500">Last updated: Today at 9:00 AM</p>
-          </div>
-          <button
-            onClick={() => setIsEditing(!isEditing)}
-            className="text-red-600 hover:text-red-800 font-semibold"
-          >
-            {isEditing ? 'Done' : 'Edit'}
-          </button>
-        </div>
-      </div>
-
       {/* Health Metrics Grid */}
       <div className="bg-white shadow-sm rounded-lg overflow-hidden">
         <div className="px-6 py-4 border-b border-gray-200">
