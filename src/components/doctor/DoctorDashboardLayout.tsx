@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import DashboardSidebar from "./DoctorSidebar";
 import DashboardHeader from "../shared/DashboardHeader";
-import DashboardFooter from "../shared/DashboardFooter";
+import DashboardSidebar from "./DoctorSidebar";
 
 interface DashboardLayoutProps {
 	children: React.ReactNode;
@@ -103,7 +102,6 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, userName })
 					</main>
 				</div>
 			</div>
-			<DashboardFooter />
 		</div>
 	);
 };

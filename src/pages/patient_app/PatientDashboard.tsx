@@ -1,15 +1,11 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import PatientDashboardLayout from '../../components/patient/PatientDashboardLayout';
-import { PatientHome, Profile } from '../../components/patient';
-import { PatientHistory, PersonalInfo, PhysicalExam } from '../../components/patient/health-management';
+import { Route, Routes } from 'react-router-dom';
+import { PatientHome } from '../../components/patient';
+import { default as ChatAssistant, default as Notifications, default as ScheduleAppointment } from '../../components/patient/Appointments';
 import { BloodTests, CardiacMRI, CTScan, ECGAnalysis, HolterMonitor, SymptomChecker } from '../../components/patient/diagnostics';
+import { PatientHistory, PersonalInfo, PhysicalExam } from '../../components/patient/health-management';
 import { EmergencySOS, Telemedicine, TreatmentPlan } from '../../components/patient/healthcare';
-import ChatAssistant from '../../components/patient/Appointments';
-import ScheduleAppointment from '../../components/patient/Appointments';
-import Notifications from '../../components/patient/Appointments';
+import PatientDashboardLayout from '../../components/patient/PatientDashboardLayout';
 import { WearableDevices } from '../../components/patient/smart';
-import ChatRoom from '../../components/shared/ChatRoom';
 
 const PatientDashboard = () => {
   const patientName = 'Jane Doe';
@@ -35,9 +31,6 @@ const PatientDashboard = () => {
         <Route path="/sos" element={<EmergencySOS />} />
         <Route path="/treatment" element={<TreatmentPlan />} />
         <Route path="/telemedicine" element={<Telemedicine />} />
-        <Route path="/schedule" element={<ScheduleAppointment />} />
-        <Route path="/notifications" element={<Notifications />} />
-        <Route path="/chat" element={<ChatAssistant />} />
         <Route path="/wearables" element={<WearableDevices />} />
       </Routes>
     </PatientDashboardLayout>;

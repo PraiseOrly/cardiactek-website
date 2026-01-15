@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import PatientSidebar from "./PatientSidebar";
 import DashboardHeader from "../shared/DashboardHeader";
-import DashboardFooter from "../shared/DashboardFooter";
+import PatientSidebar from "./PatientSidebar";
 
 interface PatientDashboardLayoutProps {
 	children: React.ReactNode;
@@ -84,26 +83,18 @@ const 	PatientDashboardLayout: React.FC<PatientDashboardLayoutProps> = ({ childr
 				)}
 
 				<div className="flex-1 flex flex-col min-w-0">
-					<header className="sticky top-0 z-40 bg-white border-b border-gray-200">
+					<header className="sticky top-0 z-40">
 						<DashboardHeader
 							role="patient"
 							userName={userName}
 							onToggleSidebar={toggleSidebar}
 						/>
-						<div className="px-4 sm:px-6 lg:px-8">
-							<div className="py-3">
-								<h2 className="text-lg font-medium leading-6 text-gray-900 truncate">
-									{formattedTitle}
-								</h2>
-							</div>
-						</div>
 					</header>
 					<main className="flex-1 overflow-y-auto bg-gray-50 p-4 sm:p-6 lg:p-8">
 						{children}
 					</main>
 				</div>
 			</div>
-			<DashboardFooter />
 		</div>
 	);
 };
