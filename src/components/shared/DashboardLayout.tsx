@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import DashboardSidebar from "../doctor/DoctorSidebar";
 import PatientSidebar from "../patient/PatientSidebar";
-import DashboardHeader from "./DashboardHeader";
 
 interface DashboardLayoutProps {
 	children: React.ReactNode;
