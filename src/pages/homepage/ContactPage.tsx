@@ -9,7 +9,6 @@ import {
   Linkedin,
   Mail,
   MapPin,
-  MessageSquare,
   Phone,
   Send,
   Shield,
@@ -177,7 +176,7 @@ const ContactPage = () => {
         </section>
 
         {/* Team Profiles */}
-        <section className="py-24 bg-gray-900 border-t border-white/10">
+        <section className="py-24 bg-white border-t border-gray-200">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -186,8 +185,8 @@ const ContactPage = () => {
               viewport={{ once: true }}
               className="mb-16 text-center"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Meet Our Clinical Support Team</h2>
-              <p className="text-gray-400 italic">Dedicated professionals ready to assist you</p>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Meet Our Clinical Support Team</h2>
+              <p className="text-gray-600 italic">Dedicated professionals ready to assist you</p>
             </motion.div>
 
             <motion.div
@@ -231,7 +230,7 @@ const ContactPage = () => {
                   key={index}
                   variants={scaleIn}
                   whileHover={{ y: -10 }}
-                  className="bg-gray-800/80 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-red-600/10 transition-all duration-300 group"
+                  className="bg-white backdrop-blur-sm border border-gray-200 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-red-600/10 transition-all duration-300 group"
                 >
                   <div className="relative">
                     <img
@@ -243,15 +242,15 @@ const ContactPage = () => {
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
                       <p className="text-red-400 font-medium text-sm">{member.role}</p>
-                      <p className="text-gray-400 text-xs mt-1">{member.specialty}</p>
+                      <p className="text-gray-300 text-xs mt-1">{member.specialty}</p>
                     </div>
                   </div>
-                  <div className="p-4 border-t border-white/10 flex justify-center">
+                  <div className="p-4 border-t border-gray-200 flex justify-center">
                     <a
                       href={member.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-400 hover:text-red-400 transition-colors text-sm font-medium"
+                      className="flex items-center gap-2 text-gray-500 hover:text-red-600 transition-colors text-sm font-medium"
                       aria-label={`Connect with ${member.name} on LinkedIn`}
                     >
                       <Linkedin className="w-5 h-5" />
@@ -265,7 +264,7 @@ const ContactPage = () => {
         </section>
 
         {/* Contact Information */}
-        <section id="emergency" className="py-24 bg-gray-900 border-t border-white/10">
+        <section id="emergency" className="py-24 bg-white border-t border-gray-200">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -274,8 +273,8 @@ const ContactPage = () => {
               viewport={{ once: true }}
               className="mb-16 text-center"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Contact Options</h2>
-              <p className="text-gray-400 italic">Multiple ways to reach our clinical support team</p>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Contact Options</h2>
+              <p className="text-gray-600 italic">Multiple ways to reach our clinical support team</p>
             </motion.div>
 
             <motion.div
@@ -287,7 +286,7 @@ const ContactPage = () => {
             >
               {[
                 {
-                  icon: <Mail className="h-12 w-12 text-red-400" />,
+                  icon: <Mail className="h-12 w-12 text-red-600" />,
                   title: 'Clinical Support',
                   details: [
                     'Care Team: care@cardiactek.com',
@@ -296,7 +295,7 @@ const ContactPage = () => {
                   urgent: false,
                 },
                 {
-                  icon: <Phone className="h-12 w-12 text-red-400" />,
+                  icon: <Phone className="h-12 w-12 text-red-600" />,
                   title: 'Emergency Contact',
                   details: [
                     'Clinical Support: 1-800-HEART-911',
@@ -305,7 +304,7 @@ const ContactPage = () => {
                   urgent: true,
                 },
                 {
-                  icon: <MapPin className="h-12 w-12 text-red-400" />,
+                  icon: <MapPin className="h-12 w-12 text-red-600" />,
                   title: 'HQ Location',
                   details: [
                     '123 Cardiac Way Suite 200',
@@ -318,8 +317,8 @@ const ContactPage = () => {
                   key={index}
                   variants={scaleIn}
                   whileHover={{ y: -10, scale: 1.02 }}
-                  className={`bg-gray-800/80 backdrop-blur-sm border rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer ${
-                    item.urgent ? 'border-red-500/30 shadow-red-600/10' : 'border-white/10 hover:shadow-red-600/10'
+                  className={`bg-white backdrop-blur-sm border rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer ${
+                    item.urgent ? 'border-red-500/30 shadow-red-600/10' : 'border-gray-200 hover:shadow-red-600/10'
                   }`}
                 >
                   <div className="p-8">
@@ -328,16 +327,16 @@ const ContactPage = () => {
                         {item.icon}
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-4 text-center">{item.title}</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{item.title}</h3>
                     <div className="space-y-3 text-center">
                       {item.details.map((detail, i) => (
-                        <p key={i} className="text-gray-300 text-sm leading-relaxed">
+                        <p key={i} className="text-gray-600 text-sm leading-relaxed">
                           {detail}
                         </p>
                       ))}
                     </div>
                     {item.urgent && (
-                      <div className="mt-6 flex items-center justify-center gap-2 text-red-400">
+                      <div className="mt-6 flex items-center justify-center gap-2 text-red-600">
                         <Clock className="w-4 h-4" />
                         <span className="text-xs font-bold uppercase tracking-wider">24/7 Available</span>
                       </div>
@@ -353,7 +352,7 @@ const ContactPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+              className="rounded-3xl overflow-hidden shadow-2xl border border-gray-200"
             >
               <iframe
                 title="CardiacTEK Headquarters"
@@ -370,7 +369,7 @@ const ContactPage = () => {
         </section>
 
         {/* Contact Form */}
-        <section id="contact-form" className="py-24 bg-gray-900 border-t border-white/10">
+        <section id="contact-form" className="py-24 bg-white border-t border-gray-200">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -379,8 +378,8 @@ const ContactPage = () => {
               viewport={{ once: true }}
               className="max-w-3xl mx-auto text-center mb-12"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Clinical Inquiry Form</h2>
-              <p className="text-gray-400 italic">Send us a message and our team will respond promptly</p>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Clinical Inquiry Form</h2>
+              <p className="text-gray-600 italic">Send us a message and our team will respond promptly</p>
             </motion.div>
 
             <motion.div
@@ -390,10 +389,10 @@ const ContactPage = () => {
               viewport={{ once: true }}
               className="max-w-3xl mx-auto"
             >
-              <form onSubmit={handleSubmit} className="bg-gray-800/80 backdrop-blur-sm border border-white/10 rounded-3xl p-8 shadow-2xl">
+              <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-3xl p-8 shadow-2xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Full Name
                     </label>
                     <input
@@ -403,8 +402,8 @@ const ContactPage = () => {
                         setFormData({ ...formData, name: e.target.value })
                       }
                       className={`w-full px-4 py-3 rounded-xl border ${
-                        formErrors.name ? 'border-red-500' : 'border-white/20 bg-gray-900/50'
-                      } focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-500 transition-all`}
+                        formErrors.name ? 'border-red-500' : 'border-gray-300 bg-white'
+                      } focus:ring-2 focus:ring-red-500 focus:border-transparent text-gray-900 placeholder-gray-400 transition-all`}
                       placeholder="Dr. John Smith"
                       required
                       aria-invalid={!!formErrors.name}
@@ -417,7 +416,7 @@ const ContactPage = () => {
                     )}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Institution Email
                     </label>
                     <input
@@ -427,8 +426,8 @@ const ContactPage = () => {
                         setFormData({ ...formData, email: e.target.value })
                       }
                       className={`w-full px-4 py-3 rounded-xl border ${
-                        formErrors.email ? 'border-red-500' : 'border-white/20 bg-gray-900/50'
-                      } focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-500 transition-all`}
+                        formErrors.email ? 'border-red-500' : 'border-gray-300 bg-white'
+                      } focus:ring-2 focus:ring-red-500 focus:border-transparent text-gray-900 placeholder-gray-400 transition-all`}
                       placeholder="john.smith@hospital.org"
                       required
                       aria-invalid={!!formErrors.email}
@@ -443,7 +442,7 @@ const ContactPage = () => {
                 </div>
 
                 <div className="mb-6">
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Subject
                   </label>
                   <input
@@ -453,8 +452,8 @@ const ContactPage = () => {
                       setFormData({ ...formData, subject: e.target.value })
                     }
                     className={`w-full px-4 py-3 rounded-xl border ${
-                      formErrors.subject ? 'border-red-500' : 'border-white/20 bg-gray-900/50'
-                    } focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-500 transition-all`}
+                      formErrors.subject ? 'border-red-500' : 'border-gray-300 bg-white'
+                    } focus:ring-2 focus:ring-red-500 focus:border-transparent text-gray-900 placeholder-gray-400 transition-all`}
                     placeholder="Clinical Support Inquiry"
                     required
                     aria-invalid={!!formErrors.subject}
@@ -468,7 +467,7 @@ const ContactPage = () => {
                 </div>
 
                 <div className="mb-8">
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Clinical Details
                   </label>
                   <textarea
@@ -478,8 +477,8 @@ const ContactPage = () => {
                       setFormData({ ...formData, message: e.target.value })
                     }
                     className={`w-full px-4 py-3 rounded-xl border ${
-                      formErrors.message ? 'border-red-500' : 'border-white/20 bg-gray-900/50'
-                    } focus:ring-2 focus:ring-red-500 focus:border-transparent text-white placeholder-gray-500 transition-all resize-none`}
+                      formErrors.message ? 'border-red-500' : 'border-gray-300 bg-white'
+                    } focus:ring-2 focus:ring-red-500 focus:border-transparent text-gray-900 placeholder-gray-400 transition-all resize-none`}
                     placeholder="Include patient ID, symptoms, and relevant medical history..."
                     required
                     aria-invalid={!!formErrors.message}
@@ -497,14 +496,14 @@ const ContactPage = () => {
                   disabled={formStatus === 'submitting'}
                   className={`w-full flex items-center justify-center py-4 px-6 rounded-xl font-bold uppercase tracking-wider transition-all duration-300 ${
                     formStatus === 'submitting'
-                      ? 'bg-red-800/50 cursor-not-allowed text-gray-400'
+                      ? 'bg-red-200 cursor-not-allowed text-gray-500'
                       : 'bg-red-600 hover:bg-red-700 text-white shadow-lg hover:shadow-xl hover:scale-[1.02]'
                   }`}
                 >
                   {formStatus === 'submitting' ? (
                     <>
                       <svg
-                        className="animate-spin h-5 w-5 mr-2 text-white"
+                        className="animate-spin h-5 w-5 mr-2 text-gray-500"
                         viewBox="0 0 24 24"
                       >
                         <circle
@@ -536,7 +535,7 @@ const ContactPage = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-24 bg-gray-900 border-t border-white/10">
+        <section className="py-24 bg-gray-50 border-t border-gray-200">
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -545,8 +544,8 @@ const ContactPage = () => {
               viewport={{ once: true }}
               className="mb-16 text-center"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Clinical Support FAQ</h2>
-              <p className="text-gray-400 italic">Frequently asked questions about our services</p>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Clinical Support FAQ</h2>
+              <p className="text-gray-600 italic">Frequently asked questions about our services</p>
             </motion.div>
 
             <motion.div
@@ -561,53 +560,53 @@ const ContactPage = () => {
                   question: 'What constitutes a cardiac emergency?',
                   answer:
                     'Immediately contact emergency services for chest pain lasting more than 5 minutes, sudden shortness of breath, or loss of consciousness. Our system will automatically notify your local EMS when critical rhythms are detected.',
-                  icon: <Heart className="w-6 h-6 text-red-400" />,
+                  icon: <Heart className="w-6 h-6 text-red-600" />,
                 },
                 {
                   question: 'How do you handle HIPAA compliance?',
                   answer:
                     'All data is encrypted end-to-end with AES-256 encryption. We maintain strict access controls and audit logs to ensure compliance with healthcare privacy regulations.',
-                  icon: <Shield className="w-6 h-6 text-red-400" />,
+                  icon: <Shield className="w-6 h-6 text-red-600" />,
                 },
                 {
                   question: 'What clinical integrations do you support?',
                   answer:
                     'Our system integrates with EPIC, Cerner, and HL7-compliant EHR systems. We support automated report generation and real-time monitoring alerts.',
-                  icon: <Users className="w-6 h-6 text-red-400" />,
+                  icon: <Users className="w-6 h-6 text-red-600" />,
                 },
                 {
                   question: 'How quickly do you respond to inquiries?',
                   answer:
                     'Clinical emergencies receive immediate response. Standard inquiries are answered within 2 hours during business hours, and within 4 hours outside business hours.',
-                  icon: <Clock className="w-6 h-6 text-red-400" />,
+                  icon: <Clock className="w-6 h-6 text-red-600" />,
                 },
               ].map((faq, index) => (
                 <motion.div
                   key={index}
                   variants={scaleIn}
-                  className="bg-gray-800/80 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-red-600/10 transition-all duration-300"
+                  className="bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-red-600/10 transition-all duration-300"
                   role="region"
                   aria-labelledby={`faq-question-${index}`}
                 >
                   <button
                     onClick={() => toggleFaq(index)}
-                    className="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 focus:ring-offset-white"
                     aria-expanded={activeFaqIndex === index}
                     aria-controls={`faq-answer-${index}`}
                   >
                     <div className="flex items-center gap-4">
-                      <div className="p-2 bg-red-600/20 rounded-xl">
+                      <div className="p-2 bg-red-600/10 rounded-xl">
                         {faq.icon}
                       </div>
                       <h3
                         id={`faq-question-${index}`}
-                        className="text-xl font-bold text-white"
+                        className="text-xl font-bold text-gray-900"
                       >
                         {faq.question}
                       </h3>
                     </div>
                     <ChevronDown
-                      className={`h-6 w-6 text-red-400 transform transition-transform duration-300 ${
+                      className={`h-6 w-6 text-red-600 transform transition-transform duration-300 ${
                         activeFaqIndex === index ? 'rotate-180' : ''
                       }`}
                     />
@@ -620,8 +619,8 @@ const ContactPage = () => {
                         : 'max-h-0 opacity-0'
                     }`}
                   >
-                    <div className="px-8 pb-6 pt-2 border-t border-white/10">
-                      <p className="text-gray-300 leading-relaxed text-lg">
+                    <div className="px-8 pb-6 pt-2 border-t border-gray-200">
+                      <p className="text-gray-600 leading-relaxed text-lg">
                         {faq.answer}
                       </p>
                     </div>

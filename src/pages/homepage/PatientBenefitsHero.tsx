@@ -266,13 +266,13 @@ export function ValueProps() {
   ]
 
   return (
-    <Section id="platform" className="bg-gray-800 border-t border-white/10">
+    <Section id="platform" className="bg-white border-t border-gray-200">
       <motion.div
         ref={ref}
         variants={staggerContainer}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
-        className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10 border border-white/10 rounded-3xl overflow-hidden"
+        className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200 border-2 border-red-600 rounded-3xl overflow-hidden"
       >
         {props.map((prop, idx) => (
           <motion.div
@@ -282,7 +282,7 @@ export function ValueProps() {
               scale: 1.02,
               y: -5,
             }}
-            className="bg-gray-900/80 backdrop-blur-sm p-10 group hover:bg-gray-800/80 transition-all duration-300 relative overflow-hidden cursor-pointer"
+            className="bg-white backdrop-blur-sm p-10 group hover:bg-gray-50 transition-all duration-300 relative overflow-hidden cursor-pointer"
           >
             <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
               <prop.icon
@@ -300,24 +300,24 @@ export function ValueProps() {
               }}
             >
               <prop.icon
-                className="w-10 h-10 text-red-500 mb-6"
+                className="w-10 h-10 text-red-600 mb-6"
                 strokeWidth={1.5}
               />
             </motion.div>
 
-            <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-tight relative z-10">
+            <h3 className="text-xl font-bold text-gray-900 mb-4 uppercase tracking-tight relative z-10">
               {prop.title}
             </h3>
 
-            <p className="text-gray-300 mb-8 text-sm leading-relaxed relative z-10 min-h-[80px]">
+            <p className="text-gray-600 mb-8 text-sm leading-relaxed relative z-10 min-h-[80px]">
               {prop.description}
             </p>
 
-            <div className="border-t border-white/10 pt-6">
-              <div className="text-4xl font-bold text-white mb-1 tracking-tighter">
+            <div className="border-t border-gray-200 pt-6">
+              <div className="text-4xl font-bold text-gray-900 mb-1 tracking-tighter">
                 {prop.stat}
               </div>
-              <div className="text-xs font-mono text-red-400 uppercase tracking-wider">
+              <div className="text-xs font-mono text-red-600 uppercase tracking-wider">
                 {prop.statLabel}
               </div>
             </div>
@@ -330,7 +330,7 @@ export function ValueProps() {
 
 function Section({ children, className = '', id }: { children: React.ReactNode; className?: string; id?: string }) {
   return (
-    <section id={id} className={`relative py-24 border-t border-white/10 ${className}`}>
+    <section id={id} className={`relative py-24 border-t border-gray-200 ${className}`}>
       <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-red-600" />
       <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-red-600" />
       <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-red-600" />

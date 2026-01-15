@@ -182,7 +182,7 @@ function FeaturedPost() {
   if (!featuredPost) return null
 
 return (
-    <section id="featured" className="py-24 bg-gray-800 border-t border-white/10">
+    <section id="featured" className="py-24 bg-white border-t border-gray-200">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -191,8 +191,8 @@ return (
           viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Featured Article</h2>
-          <p className="text-gray-400 italic">Our most recent in-depth analysis</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Featured Article</h2>
+          <p className="text-gray-600 italic">Our most recent in-depth analysis</p>
 </motion.div>
 
         <motion.div
@@ -286,7 +286,7 @@ function BlogPostsGrid() {
     : blogPosts.filter(post => post.category === selectedCategory && !post.featured)
 
   return (
-    <section id="categories" className="py-24 bg-gray-900 border-t border-white/10">
+    <section id="categories" className="py-24 bg-white border-t border-gray-200">
       <div className="container mx-auto px-6">
         <motion.div
           ref={ref}
@@ -296,8 +296,8 @@ function BlogPostsGrid() {
           className="mb-16"
         >
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Latest Articles</h2>
-            <p className="text-gray-400 italic">Comprehensive insights from cardiac health experts</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Latest Articles</h2>
+            <p className="text-gray-600 italic">Comprehensive insights from cardiac health experts</p>
           </div>
 
           {/* Category Filter */}
@@ -311,7 +311,7 @@ function BlogPostsGrid() {
                 className={`px-6 py-3 rounded-xl font-bold uppercase tracking-wider text-sm transition-all duration-200 ${
                   selectedCategory === category
                     ? 'bg-red-600 text-white shadow-lg shadow-red-600/20'
-                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white border border-white/10'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900 border border-gray-200'
                 }`}
               >
                 {category}
@@ -331,10 +331,10 @@ function BlogPostsGrid() {
               key={post.id}
               variants={scaleIn}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-gray-800/80 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-red-600/10 transition-all duration-300 group cursor-pointer"
+              className="bg-white backdrop-blur-sm border border-gray-200 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-red-600/10 transition-all duration-300 group cursor-pointer"
             >
-              <div className="aspect-video bg-gray-700 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 to-blue-600/10" />
+              <div className="aspect-video bg-gray-100 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 to-blue-600/5" />
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 bg-red-600/90 text-white text-xs font-bold uppercase tracking-wider rounded-full backdrop-blur-sm">
                     {post.category}
@@ -343,7 +343,7 @@ function BlogPostsGrid() {
               </div>
 
               <div className="p-6">
-                <div className="flex items-center gap-4 mb-4 text-gray-400 text-sm">
+                <div className="flex items-center gap-4 mb-4 text-gray-500 text-sm">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
                     {new Date(post.date).toLocaleDateString('en-US', {
@@ -357,11 +357,11 @@ function BlogPostsGrid() {
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-3 leading-tight group-hover:text-red-400 transition-colors line-clamp-2">
+                <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-red-600 transition-colors line-clamp-2">
                   {post.title}
                 </h3>
 
-                <p className="text-gray-300 mb-6 text-sm leading-relaxed line-clamp-3">
+                <p className="text-gray-600 mb-6 text-sm leading-relaxed line-clamp-3">
                   {post.excerpt}
                 </p>
 
@@ -370,10 +370,10 @@ function BlogPostsGrid() {
                     <div className="w-8 h-8 bg-red-600 rounded-full flex items-center justify-center">
                       <User className="w-4 h-4 text-white" />
                     </div>
-                    <span className="text-gray-400 text-sm">{post.author}</span>
+                    <span className="text-gray-600 text-sm">{post.author}</span>
                   </div>
 
-                  <ArrowRight className="w-5 h-5 text-red-400 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5 text-red-600 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             </motion.article>
@@ -387,7 +387,7 @@ function BlogPostsGrid() {
           transition={{ delay: 0.8 }}
           className="text-center mt-16"
         >
-          <button className="inline-flex items-center px-8 py-4 bg-transparent text-white border border-white/20 font-bold uppercase tracking-wider hover:bg-white/10 transition-all duration-200 rounded-xl backdrop-blur-sm hover:scale-105">
+          <button className="inline-flex items-center px-8 py-4 bg-transparent text-gray-700 border border-gray-300 font-bold uppercase tracking-wider hover:bg-gray-100 transition-all duration-200 rounded-xl hover:scale-105">
             Load More Articles
             <ArrowRight className="ml-2 h-5 w-5" />
           </button>
@@ -402,7 +402,7 @@ function BlogPostsGrid() {
 // ============================================================================
 function NewsletterSubscription() {
   return (
-    <section className="py-24 bg-gray-800 border-t border-white/10">
+    <section className="py-24 bg-gray-50 border-t border-gray-200">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -411,8 +411,8 @@ function NewsletterSubscription() {
           viewport={{ once: true }}
           className="max-w-2xl mx-auto text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Stay Informed</h2>
-          <p className="text-gray-300 mb-8 text-lg">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Stay Informed</h2>
+          <p className="text-gray-600 mb-8 text-lg">
             Get the latest cardiac health insights and research delivered to your inbox.
           </p>
 
@@ -420,14 +420,14 @@ function NewsletterSubscription() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-6 py-4 bg-gray-900 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
+              className="flex-1 px-6 py-4 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
             />
             <button className="px-8 py-4 bg-red-600 text-white font-bold uppercase tracking-wider hover:bg-red-700 transition-all duration-200 rounded-xl hover:scale-105 whitespace-nowrap">
               Subscribe
             </button>
           </div>
 
-          <p className="text-gray-400 text-sm mt-4">
+          <p className="text-gray-500 text-sm mt-4">
             We respect your privacy. Unsubscribe at any time.
           </p>
         </motion.div>

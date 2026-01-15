@@ -7,7 +7,7 @@ import { Hero, ValueProps } from './PatientBenefitsHero'
 // ============================================================================
 const PatientBenefits = () => {
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-sans selection:bg-red-600 selection:text-white">
+    <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-red-600 selection:text-white">
       <Navbar />
       <main>
         <Hero />
