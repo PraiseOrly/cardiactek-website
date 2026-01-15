@@ -35,10 +35,10 @@ import {
   X
 } from 'lucide-react'
 import { useState } from 'react'
-import { ActivityItem } from '../../components/patient/ActivityItem'
-import { AppointmentCard } from '../../components/patient/AppointmentCard'
-import { MedicationItem } from '../../components/patient/MedicationItem'
-import { VitalCard } from '../../components/patient/VitalCard'
+import { ActivityItem } from '../../components/Patient/ActivityItem'
+import { AppointmentCard } from '../../components/Patient/Appointments/AppointmentCard'
+import { MedicationItem } from '../../components/Patient/MedicationItem'
+import { VitalCard } from '../../components/Patient/VitalCard'
 export default function PatientDashboard() {
   const [activeTab, setActiveTab] = useState('Overview')
   const [activeMenuItem, setActiveMenuItem] = useState('Dashboard')
