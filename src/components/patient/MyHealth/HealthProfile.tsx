@@ -85,6 +85,33 @@ const HealthProfile: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {/* Health Summary */}
+      <div className="bg-gradient-to-r from-red-50 to-pink-50 shadow-sm rounded-lg overflow-hidden">
+        <div className="px-6 py-4">
+          <h3 className="text-md font-medium text-gray-900 mb-3">Health Summary</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="text-sm text-gray-500 mb-1">Overall Health Score</div>
+              <div className="text-3xl font-bold text-green-600">85</div>
+              <div className="text-xs text-gray-400">out of 100</div>
+              <div className="text-xs text-gray-500 mt-1">Excellent cardiovascular health based on vital signs and goals</div>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="text-sm text-gray-500 mb-1">Active Goals</div>
+              <div className="text-3xl font-bold text-blue-600">3</div>
+              <div className="text-xs text-gray-400">of 4 in progress</div>
+              <div className="text-xs text-gray-500 mt-1">75% average completion rate across all goals</div>
+            </div>
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="text-sm text-gray-500 mb-1">Risk Level</div>
+              <div className="text-3xl font-bold text-green-600">Low</div>
+              <div className="text-xs text-gray-400">Based on current metrics</div>
+              <div className="text-xs text-gray-500 mt-1">Low risk for heart disease, hypertension, and diabetes based on blood pressure, cholesterol, glucose, and heart rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Health Metrics Grid */}
       <div className="bg-white shadow-sm rounded-lg overflow-hidden">
         <div className="px-6 py-4 border-b border-gray-200">
@@ -96,8 +123,8 @@ const HealthProfile: React.FC = () => {
         <div className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {healthMetrics.map((metric) => (
-              <div 
-                key={metric.name} 
+              <div
+                key={metric.name}
                 className="border rounded-lg p-4 hover:shadow-md transition-shadow"
               >
                 <div className="flex justify-between items-start mb-2">
@@ -154,8 +181,8 @@ const HealthProfile: React.FC = () => {
                   </span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2.5">
-                  <div 
-                    className={`h-2.5 rounded-full ${getGoalStatusColor(goal.status)}`} 
+                  <div
+                    className={`h-2.5 rounded-full ${getGoalStatusColor(goal.status)}`}
                     style={{ width: `${goal.progress}%` }}
                   ></div>
                 </div>
@@ -173,30 +200,6 @@ const HealthProfile: React.FC = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Health Summary */}
-      <div className="bg-gradient-to-r from-red-50 to-pink-50 shadow-sm rounded-lg overflow-hidden">
-        <div className="px-6 py-4">
-          <h3 className="text-md font-medium text-gray-900 mb-3">Health Summary</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-sm text-gray-500 mb-1">Overall Health Score</div>
-              <div className="text-3xl font-bold text-green-600">85</div>
-              <div className="text-xs text-gray-400">out of 100</div>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-sm text-gray-500 mb-1">Active Goals</div>
-              <div className="text-3xl font-bold text-blue-600">3</div>
-              <div className="text-xs text-gray-400">of 4 in progress</div>
-            </div>
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-sm text-gray-500 mb-1">Risk Level</div>
-              <div className="text-3xl font-bold text-green-600">Low</div>
-              <div className="text-xs text-gray-400">Based on current metrics</div>
-            </div>
           </div>
         </div>
       </div>
