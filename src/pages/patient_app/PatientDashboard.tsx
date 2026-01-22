@@ -39,6 +39,7 @@ import { VitalCard } from '../../components/Patient/VitalCard'
 export default function PatientDashboard() {
   const [activeMenuItem, setActiveMenuItem] = useState('Dashboard')
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
   const [expandedSections, setExpandedSections] = useState<string[]>([
     'Main',
     'Appointments',
@@ -50,6 +51,29 @@ export default function PatientDashboard() {
         : [...prev, section],
     )
   }
+
+  const getPageTitle = (menuItem: string): string => {
+    const titles: Record<string, string> = {
+      Dashboard: 'Patient Dashboard',
+      'Health Records': 'Medical Records',
+      'Health Profile': 'Health Profile',
+      Medications: 'Medications',
+      Timeline: 'Health Timeline',
+      'Diagnostic Tests': 'Diagnostic Tests',
+      'Test Analysis': 'Test Analysis',
+      'My Appointments': 'My Appointments',
+      Schedule: 'Schedule Appointment',
+      'View All': 'All Appointments',
+      Emergency: 'Emergency Services',
+      'Devices & Integrations': 'Devices & Integrations',
+      Notifications: 'Notifications',
+      Settings: 'Settings',
+      Privacy: 'Privacy & Security',
+      Billing: 'Billing & Payments',
+    }
+    return titles[menuItem] || 'Patient Dashboard'
+  }
+
   const menuSections = [
     {
       title: 'Main',
@@ -180,7 +204,11 @@ export default function PatientDashboard() {
 
       {/* Main Content - Takes remaining space */}
       <div className="flex-1 flex flex-col min-w-0 lg:ml-72">
-        <PatientHeader setSidebarOpen={setSidebarOpen} />
+        <PatientHeader 
+          setSidebarOpen={setSidebarOpen}
+          pageTitle={getPageTitle(activeMenuItem)}
+          headerType={activeMenuItem === 'Health Records' ? 'records' : 'default'}
+        />
 
         <main className="flex-1 overflow-y-auto">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">

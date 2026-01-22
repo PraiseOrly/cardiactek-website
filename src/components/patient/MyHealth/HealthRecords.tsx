@@ -6,17 +6,14 @@ import {
   ChevronUpIcon,
   ClipboardListIcon,
   ClockIcon,
-  DownloadIcon,
   FileTextIcon,
   FilterIcon,
   PillIcon,
   PlusIcon,
-  SearchIcon,
-  Share2,
-  StethoscopeIcon,
-  Upload
+  StethoscopeIcon
 } from 'lucide-react';
 import React, { useState } from 'react';
+import PatientHeader from '../PatientHeader';
 
 interface MedicalRecord {
   id: string;
@@ -237,38 +234,7 @@ const HealthRecords: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900">Medical Records</h2>
-          <p className="text-sm text-gray-500 mt-1">View and manage your complete health history</p>
-        </div>
-        <div className="mt-4 md:mt-0 flex items-center space-x-3">
-          <div className="relative">
-            <SearchIcon className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search records..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm w-64"
-            />
-          </div>
-          <button className="flex items-center px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors text-sm font-medium">
-            <Upload className="h-4 w-4 mr-2" />
-            Import
-          </button>
-          <button className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
-            <Share2 className="h-4 w-4 mr-2" />
-            Share
-          </button>
-          <button className="flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium">
-            <DownloadIcon className="h-4 w-4 mr-2" />
-            Export
-          </button>
-        </div>
-      </div>
-
+    
       {/* Quick Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
