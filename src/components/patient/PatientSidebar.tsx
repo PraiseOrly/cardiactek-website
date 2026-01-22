@@ -1,174 +1,198 @@
-import { AnimatePresence, motion } from "framer-motion";
 import {
-  Activity, Bell, Calendar, ChevronLeft, ChevronRight,
+  Activity,
+  AlertCircle,
+  Bell,
+  Calendar,
+  CalendarCheck,
+  CalendarPlus,
+  ChevronDown,
+  ChevronRight,
+  Clock,
   CreditCard,
-  HeartPulse, Home,
+  Droplet,
+  FlaskConical,
+  FolderOpen,
+  Heart,
+  HeartPulse,
+  LayoutDashboard,
+  List,
+  Lock,
   LogOut,
+  Menu,
+  MessageSquare,
+  Microscope,
   Moon,
-  Pill, Settings,
-  Shield,
-  Smartphone, Stethoscope,
-  Sun,
-  User
-} from "lucide-react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+  Pill,
+  Search,
+  Settings,
+  Smartphone,
+  TrendingDown,
+  TrendingUp,
+  User,
+  X
+} from 'lucide-react'
 
-interface ModernSidebarProps {
-  isCollapsed: boolean;
-  onToggle: () => void;
-  isMobileOpen?: boolean;
+interface MenuItem {
+  name: string
+  icon: any
+  href?: string
+  submenu?: MenuItem[]
+  highlight?: boolean
 }
 
-const ModernSidebar: React.FC<ModernSidebarProps> = ({ isCollapsed, onToggle, isMobileOpen }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const navigate = useNavigate();
+interface MenuSection {
+  title: string
+  items: MenuItem[]
+}
 
-  const menuItems = [
-    { name: "Dashboard", icon: Home, path: "/patient-dashboard" },
-    { name: "Health Profile", icon: User, path: "/patient-dashboard/health-profile" },
-    { name: "Medications", icon: Pill, path: "/patient-dashboard/medications" },
-    { name: "Diagnostics", icon: Stethoscope, path: "/patient-dashboard/diagnostics" },
-    { name: "Appointments", icon: Calendar, path: "/patient-dashboard/appointments" },
-    { name: "Devices", icon: Smartphone, path: "/patient-dashboard/devices-integrations" },
-    { name: "Activity", icon: Activity, path: "/patient-dashboard/timeline" },
-  ];
+interface PatientSidebarProps {
+  activeMenuItem: string
+  setActiveMenuItem: (item: string) => void
+  sidebarOpen: boolean
+  setSidebarOpen: (open: boolean) => void
+  expandedSections: string[]
+  toggleSection: (section: string) => void
+  menuSections: MenuSection[]
+}
 
-  const accountItems = [
-    { name: "Settings", icon: Settings, path: "/patient-dashboard/settings" },
-    { name: "Notifications", icon: Bell, path: "/patient-dashboard/notifications" },
-    { name: "Privacy", icon: Shield, path: "/patient-dashboard/privacy" },
-    { name: "Billing", icon: CreditCard, path: "/patient-dashboard/billing" },
-  ];
-
-  const toggleTheme = () => setIsDarkMode(!isDarkMode);
-  const handleNavigate = (path: string) => navigate(path);
-
-  const bgClass = isDarkMode ? "bg-gray-900 text-gray-200" : "bg-white text-gray-700";
-  const borderClass = isDarkMode ? "border-gray-800" : "border-gray-200";
-  const hoverClass = isDarkMode ? "hover:bg-gray-800 hover:text-blue-400" : "hover:bg-blue-50 hover:text-blue-600";
-
+export default function PatientSidebar({
+  activeMenuItem,
+  setActiveMenuItem,
+  sidebarOpen,
+  setSidebarOpen,
+  expandedSections,
+  toggleSection,
+  menuSections,
+}: PatientSidebarProps) {
   return (
-    <motion.div
-      animate={{ width: isCollapsed ? 64 : 256 }}
-      className={`h-full flex flex-col ${bgClass} border-r ${borderClass} transition-all duration-300 relative`}
-    >
-      {/* Sidebar Header */}
-      <div className={`flex items-center gap-2 px-3 py-3 border-b ${borderClass}`}>
-        <HeartPulse className="h-5 w-5 text-red-500 flex-shrink-0" />
-        {!isCollapsed && <span className="text-sm font-semibold whitespace-nowrap">CardiacTek</span>}
-        <button
-          onClick={onToggle}
-          className={`p-1 rounded-md ${hoverClass} flex-shrink-0 ml-auto`}
-        >
-          {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
-        </button>
-      </div>
-
-      {/* Menu Section */}
-      <div className="flex-1 overflow-y-auto py-2">
-        {!isCollapsed && (
-          <p className="text-[10px] uppercase text-gray-400 font-semibold tracking-wider px-3 mb-1">
-            Overview
-          </p>
-        )}
-        {menuItems.map((item) => (
-          <div
-            key={item.name}
-            className={`group flex items-center gap-3 px-3 py-2 mx-2 text-sm cursor-pointer rounded-lg transition-all ${hoverClass}`}
-            onClick={() => handleNavigate(item.path)}
-          >
-            <item.icon className="h-4 w-4 flex-shrink-0" />
-            {!isCollapsed && <span className="text-xs font-medium whitespace-nowrap">{item.name}</span>}
-            {isCollapsed && (
-              <span className="absolute left-16 bg-gray-800 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
-                {item.name}
-              </span>
-            )}
-          </div>
-        ))}
-
-        {!isCollapsed && (
-          <p className="text-[10px] uppercase text-gray-400 font-semibold tracking-wider px-3 mt-4 mb-1">
-            Account
-          </p>
-        )}
-        {accountItems.map((item) => (
-          <div
-            key={item.name}
-            className={`group flex items-center gap-3 px-3 py-2 mx-2 text-sm cursor-pointer rounded-lg transition-all ${hoverClass}`}
-            onClick={() => handleNavigate(item.path)}
-          >
-            <item.icon className="h-4 w-4 flex-shrink-0" />
-            {!isCollapsed && <span className="text-xs font-medium whitespace-nowrap">{item.name}</span>}
-            {isCollapsed && (
-              <span className="absolute left-16 bg-gray-800 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
-                {item.name}
-              </span>
-            )}
-          </div>
-        ))}
-
-        {/* Dark Mode Toggle */}
-        <div
-          className={`group flex items-center gap-3 px-3 py-2 mx-2 mt-2 text-sm cursor-pointer rounded-lg transition-all ${hoverClass}`}
-          onClick={toggleTheme}
-        >
-          {isDarkMode ? <Sun className="h-4 w-4 flex-shrink-0" /> : <Moon className="h-4 w-4 flex-shrink-0" />}
-          {!isCollapsed && (
-            <span className="text-xs font-medium whitespace-nowrap">
-              {isDarkMode ? "Light Mode" : "Dark Mode"}
-            </span>
-          )}
-          {isCollapsed && (
-            <span className="absolute left-16 bg-gray-800 text-white text-[10px] px-2 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">
-              {isDarkMode ? "Light Mode" : "Dark Mode"}
-            </span>
-          )}
-        </div>
-      </div>
-
-      {/* Footer - Profile Section */}
-      <div className={`border-t ${borderClass} px-3 py-3`}>
-        <div
-          className={`flex items-center gap-3 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg px-2 py-2 ${isCollapsed ? 'justify-center' : ''}`}
-          onClick={() => setIsProfileOpen(!isProfileOpen)}
-        >
-          <img
-            src="https://i.pravatar.cc/40?img=8"
-            alt="User"
-            className="w-7 h-7 rounded-full object-cover flex-shrink-0"
-          />
-          {!isCollapsed && (
-            <div className="flex flex-col overflow-hidden">
-              <span className="text-xs font-semibold truncate">John Wilson</span>
-              <span className="text-[10px] text-gray-400 truncate">wilson@gmail.com</span>
-            </div>
-          )}
-        </div>
-
-        {/* Profile Dropdown */}
-        <AnimatePresence>
-          {isProfileOpen && !isCollapsed && (
-            <motion.div
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 5 }}
-              className={`mt-2 ${bgClass} border ${borderClass} rounded-lg shadow-md text-xs z-50`}
-            >
-              <div className="px-3 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">Integrations</div>
-              <div className="px-3 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">History</div>
-              <div className="px-3 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">Update to Pro</div>
-              <div className="border-t px-3 py-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-950 cursor-pointer flex items-center gap-1">
-                <LogOut size={12} /> Log out
+    <>
+      {/* Sidebar - Fixed with internal scrolling */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-72 bg-white/80 backdrop-blur-xl border-r border-slate-200/60 shadow-2xl shadow-slate-900/5 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
+      >
+        <div className="flex flex-col h-full">
+          {/* Sidebar Header - Fixed at top */}
+          <div className="flex items-center justify-between p-6 border-b border-slate-200/60 flex-shrink-0">
+            <div className="flex items-center gap-3">
+              <div className="bg-gradient-to-br from-red-600 to-rose-600 p-2 rounded-xl shadow-lg shadow-red-600/20">
+                <Activity className="text-white w-5 h-5" />
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.div>
-  );
-};
+              <div>
+                <span className="font-bold text-lg tracking-tight text-slate-900">
+                  MediCare
+                </span>
+                <p className="text-xs text-slate-500 font-medium">
+                  Health Platform
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="lg:hidden p-2 hover:bg-slate-100 rounded-lg transition-colors"
+            >
+              <X size={18} className="text-slate-500" />
+            </button>
+          </div>
 
-export default ModernSidebar;
+          {/* Sidebar Navigation - Scrollable area */}
+          <nav className="flex-1 overflow-y-auto p-4 space-y-6 min-h-0">
+            {menuSections.map((section) => (
+              <div key={section.title}>
+                <button
+                  onClick={() => toggleSection(section.title)}
+                  className="flex items-center justify-between w-full text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-3 px-2 hover:text-slate-700 transition-colors"
+                >
+                  {section.title}
+                  <ChevronDown
+                    size={12}
+                    className={`transform transition-transform duration-200 ${expandedSections.includes(section.title) ? 'rotate-180' : ''}`}
+                  />
+                </button>
+
+                {expandedSections.includes(section.title) && (
+                  <div className="space-y-0.5">
+                    {section.items.map((item) => (
+                      <div key={item.name}>
+                        {item.submenu ? (
+                          <div>
+                            <button
+                              onClick={() => setActiveMenuItem(item.name)}
+                              className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${activeMenuItem === item.name ? 'bg-gradient-to-r from-red-50 to-rose-50 text-red-600 shadow-sm' : 'text-slate-700 hover:bg-slate-50'}`}
+                            >
+                              <item.icon size={18} strokeWidth={2} />
+                              <span className="flex-1 text-left">
+                                {item.name}
+                              </span>
+                              <ChevronRight
+                                size={14}
+                                className="text-slate-400"
+                              />
+                            </button>
+                            <div className="ml-9 mt-1 space-y-0.5">
+                              {item.submenu.map((subitem) => (
+                                <button
+                                  key={subitem.name}
+                                  onClick={() =>
+                                    setActiveMenuItem(subitem.name)
+                                  }
+                                  className={`flex items-center gap-2.5 w-full px-3 py-2 rounded-lg text-sm transition-all duration-200 ${activeMenuItem === subitem.name ? 'text-red-600 font-semibold bg-red-50/50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'}`}
+                                >
+                                  <subitem.icon size={16} strokeWidth={2} />
+                                  <span>{subitem.name}</span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => setActiveMenuItem(item.name)}
+                            className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${item.highlight && item.name === 'Emergency' ? 'bg-gradient-to-r from-red-50 to-rose-50 text-red-600 hover:from-red-100 hover:to-rose-100 shadow-sm' : item.highlight && item.name === 'Sign Out' ? 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' : activeMenuItem === item.name ? 'bg-gradient-to-r from-red-50 to-rose-50 text-red-600 shadow-sm' : 'text-slate-700 hover:bg-slate-50'}`}
+                          >
+                            <item.icon size={18} strokeWidth={2} />
+                            <span>{item.name}</span>
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+
+          {/* Sidebar Footer - Fixed at bottom */}
+          <div className="p-4 border-t border-slate-200/60 bg-gradient-to-br from-slate-50 to-white flex-shrink-0">
+            <div className="flex items-center gap-3 p-3 rounded-xl hover:bg-white transition-all duration-200 cursor-pointer group">
+              <div className="relative">
+                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 text-white flex items-center justify-center font-semibold text-base shadow-lg">
+                  J
+                </div>
+                <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white"></div>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-slate-900 truncate">
+                  Jane Doe
+                </p>
+                <p className="text-xs text-slate-500 truncate">
+                  Premium Member
+                </p>
+              </div>
+              <Settings
+                size={16}
+                className="text-slate-400 group-hover:text-slate-600 transition-colors"
+              />
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      {/* Overlay for mobile */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+    </>
+  )
+}
