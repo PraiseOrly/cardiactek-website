@@ -204,11 +204,24 @@ export default function PatientDashboard() {
 
       {/* Main Content - Takes remaining space */}
       <div className="flex-1 flex flex-col min-w-0 lg:ml-72">
-        <PatientHeader 
-          setSidebarOpen={setSidebarOpen}
-          pageTitle={getPageTitle(activeMenuItem)}
-          headerType={activeMenuItem === 'Health Records' ? 'records' : 'default'}
-        />
+        {activeMenuItem === 'Health Records' ? (
+          <PatientHeader
+            headerType="records"
+            pageTitle="Medical Records"
+            searchValue={searchTerm}
+            onSearchChange={setSearchTerm}
+            onImport={() => {}}
+            onShare={() => {}}
+            onExport={() => {}}
+          />
+        ) : (
+          <PatientHeader
+            setSidebarOpen={setSidebarOpen}
+            pageTitle={getPageTitle(activeMenuItem)}
+            headerType="default"
+          />
+        )}
+
 
         <main className="flex-1 overflow-y-auto">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
