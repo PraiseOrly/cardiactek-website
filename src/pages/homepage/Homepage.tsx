@@ -27,7 +27,8 @@ const motionVariants = {
 	staggerContainer: {
 		animate: {
 			transition: {
-				staggerChildren: 0.2,
+				staggerChildren: 0.13,
+				delayChildren: 0.1,
 			},
 		},
 	},
@@ -44,6 +45,7 @@ const motionVariants = {
 };
 
 import CardiacTekHero from "../../components/Homepage/CardiacTekHero";
+import Footer from "../../components/Homepage/Footer";
 import Navbar from "../../components/Homepage/Navbar";
 import RequestDemoModal from "../../components/Homepage/RequestDemoModal";
 import "../../styles/homepage.css";
@@ -306,11 +308,11 @@ const Homepage: React.FC = () => {
 	};
 
 	return (
-		<div className="flex flex-col min-h-screen bg-gray-800">
+		<div className="flex flex-col min-h-screen bg-gray-900">
 			<Navbar />
 			<CardiacTekHero />
 			{/* About CardiacTek */}
-			<section className="relative overflow-hidden py-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+			<section id="about" className="relative overflow-hidden py-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
 				<SectionBackground />
 
 				<div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
@@ -343,7 +345,7 @@ const Homepage: React.FC = () => {
 							hidden: { opacity: 0 },
 							visible: {
 								opacity: 1,
-								transition: { staggerChildren: 0.25 },
+								transition: { staggerChildren: 0.13, delayChildren: 0.1 },
 							},
 						}}
 						className="grid md:grid-cols-2 gap-8 text-gray-300 w-full mb-20">
@@ -486,7 +488,7 @@ const Homepage: React.FC = () => {
 							viewport={{ once: true }}
 							variants={{
 								hidden: {},
-								visible: { transition: { staggerChildren: 0.15 } },
+								visible: { transition: { staggerChildren: 0.13, delayChildren: 0.1 } },
 							}}>
 							{[
 								{
@@ -618,7 +620,7 @@ const Homepage: React.FC = () => {
 								whileInView="visible"
 								variants={{
 									hidden: {},
-									visible: { transition: { staggerChildren: 0.15 } },
+									visible: { transition: { staggerChildren: 0.13, delayChildren: 0.1 } },
 								}}
 								viewport={{ once: true }}>
 								{[
@@ -903,7 +905,7 @@ const Homepage: React.FC = () => {
 				</div>
 			</section>
 			{/* Key Benefits */}
-			<section className="relative overflow-hidden py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+			<section id="benefits" className="relative overflow-hidden py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
 				<SectionBackground />
 
 				<div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8">
@@ -961,6 +963,7 @@ const Homepage: React.FC = () => {
 					</div>
 				</div>
 			</section>
+			<Footer />
 			<RequestDemoModal
 				isOpen={requestDemoOpen}
 				onClose={() => setRequestDemoOpen(false)}

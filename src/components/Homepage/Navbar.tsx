@@ -62,19 +62,10 @@ const Navbar = () => {
 					{/* Desktop Navigation */}
 					<div className="hidden md:flex space-x-1.5 items-center">
 						<Link
-							to="/"
-							className={`relative px-3 py-1.5 text-sm font-medium transition-all duration-400 rounded-xl shadow-xl group overflow-hidden ${
-								isActivePath("/")
-									? "text-red-600"
-									: "text-gray-600 hover:text-red-600"
-							}`}>
+							to="/#about"
+							className="relative px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-red-600 transition-all duration-400 rounded-xl shadow-xl group overflow-hidden">
 							<span className="relative z-10 tracking-wide">About</span>
-							<span
-								className={`absolute inset-0 bg-gradient-to-r from-red-50 via-red-100/80 to-red-50 rounded-xl transition-all duration-400 ${
-									isActivePath("/")
-										? "scale-100 opacity-100"
-										: "scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100"
-								}`}></span>
+							<span className="absolute inset-0 bg-gradient-to-r from-red-50 via-red-100/80 to-red-50 rounded-xl scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-400"></span>
 						</Link>
 
 						{/* Product Dropdown */}
@@ -86,28 +77,59 @@ const Navbar = () => {
 								<span className="relative z-10 tracking-wide">Product</span>
 								<span className="absolute inset-0 bg-gradient-to-r from-red-50 via-red-100/80 to-red-50 rounded-xl scale-90 opacity-0 transition-all duration-400 hover:scale-100 hover:opacity-100"></span>
 							</button>
-							<div className={`absolute left-0 mt-4 w-72 bg-white backdrop-blur-xl border border-gray-100 rounded-3xl shadow-2xl transform transition-all duration-400 ease-out ${activeDropdown === "product" ? "opacity-100 translate-y-0 scale-100 pointer-events-auto" : "opacity-0 translate-y-4 scale-95 pointer-events-none"} overflow-hidden`}>
-								<div className="p-4 space-y-1">
-									<Link
-										to="/for-doctors"
-										className="flex items-center justify-between px-6 py-4 text-gray-600 hover:bg-gradient-to-r hover:from-red-50 hover:via-red-50/90 hover:to-transparent hover:text-red-600 font-medium tracking-wide rounded-xl transition-all duration-300 group/item border border-transparent hover:border-red-100">
-										<span className="transform transition-all duration-300 group-hover/item:translate-x-2 text-base">
-											For Doctors
-										</span>
-										<span className="opacity-0 group-hover/item:opacity-100 transform translate-x-3 group-hover/item:translate-x-0 transition-all duration-300 text-red-600">
-											→
-										</span>
-									</Link>
-									<Link
-										to="/for-patients"
-										className="flex items-center justify-between px-6 py-4 text-gray-600 hover:bg-gradient-to-r hover:from-red-50 hover:via-red-50/90 hover:to-transparent hover:text-red-600 font-medium tracking-wide rounded-xl transition-all duration-300 group/item border border-transparent hover:border-red-100">
-										<span className="transform transition-all duration-300 group-hover/item:translate-x-2 text-base">
-											For Patients
-										</span>
-										<span className="opacity-0 group-hover/item:opacity-100 transform translate-x-3 group-hover/item:translate-x-0 transition-all duration-300 text-red-600">
-											→
-										</span>
-									</Link>
+							<div className={`absolute left-0 mt-4 w-[520px] bg-white backdrop-blur-xl border border-gray-100 rounded-3xl shadow-2xl transform transition-all duration-400 ease-out ${activeDropdown === "product" ? "opacity-100 translate-y-0 scale-100 pointer-events-auto" : "opacity-0 translate-y-4 scale-95 pointer-events-none"} overflow-hidden`}>
+								<div className="p-5 grid grid-cols-2 gap-4">
+									{/* For Doctors column */}
+									<div>
+										<Link
+											to="/for-doctors"
+											onClick={() => setActiveDropdown(null)}
+											className="flex items-center justify-between px-4 py-3 text-red-600 font-bold tracking-wide rounded-xl hover:bg-red-50 transition-all duration-300 group/item border-b border-red-100 mb-2">
+											<span className="text-base">For Doctors</span>
+											<span className="transform group-hover/item:translate-x-1 transition-transform duration-300">→</span>
+										</Link>
+										{[
+											{ label: 'Diagnostic Center', href: '/for-doctors#diagnostics' },
+											{ label: 'Diagnostic Tools', href: '/for-doctors#tools' },
+											{ label: 'Care Coordination', href: '/for-doctors#coordination' },
+											{ label: 'Patient Monitoring', href: '/for-doctors#monitoring' },
+											{ label: 'Analytics', href: '/for-doctors#analytics' },
+										].map((item) => (
+											<Link
+												key={item.href}
+												to={item.href}
+												onClick={() => setActiveDropdown(null)}
+												className="flex items-center px-4 py-2 text-sm text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200 group/sub">
+												<span className="w-1 h-1 bg-red-400 rounded-full mr-3 opacity-60 group-hover/sub:opacity-100 flex-shrink-0" />
+												{item.label}
+											</Link>
+										))}
+									</div>
+									{/* For Patients column */}
+									<div>
+										<Link
+											to="/for-patients"
+											onClick={() => setActiveDropdown(null)}
+											className="flex items-center justify-between px-4 py-3 text-red-600 font-bold tracking-wide rounded-xl hover:bg-red-50 transition-all duration-300 group/item border-b border-red-100 mb-2">
+											<span className="text-base">For Patients</span>
+											<span className="transform group-hover/item:translate-x-1 transition-transform duration-300">→</span>
+										</Link>
+										{[
+											{ label: 'Health Monitoring', href: '/for-patients#monitoring' },
+											{ label: 'Personalized Care', href: '/for-patients#care' },
+											{ label: 'Emergency Support', href: '/for-patients#support' },
+											{ label: 'Health Insights', href: '/for-patients#insights' },
+										].map((item) => (
+											<Link
+												key={item.href}
+												to={item.href}
+												onClick={() => setActiveDropdown(null)}
+												className="flex items-center px-4 py-2 text-sm text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200 group/sub">
+												<span className="w-1 h-1 bg-red-400 rounded-full mr-3 opacity-60 group-hover/sub:opacity-100 flex-shrink-0" />
+												{item.label}
+											</Link>
+										))}
+									</div>
 								</div>
 							</div>
 						</div>
@@ -118,18 +140,22 @@ const Navbar = () => {
 								<span className="relative z-10 tracking-wide">Resources</span>
 								<span className="absolute inset-0 bg-gradient-to-r from-red-50 via-red-100/80 to-red-50 rounded-xl scale-90 opacity-0 transition-all duration-400 group-hover:scale-100 group-hover:opacity-100"></span>
 							</button>
-							<div className="absolute left-0 mt-4 w-72 bg-white backdrop-blur-xl border border-gray-100 rounded-3xl shadow-2xl transform opacity-0 translate-y-4 scale-95 pointer-events-none transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:pointer-events-auto overflow-hidden">
-								<div className="p-4">
-									<Link
-										to="/blog"
-										className="flex items-center justify-between px-6 py-4 text-gray-600 hover:bg-gradient-to-r hover:from-red-50 hover:via-red-50/90 hover:to-transparent hover:text-red-600 font-medium tracking-wide rounded-xl transition-all duration-300 group/item border border-transparent hover:border-red-100">
-										<span className="transform transition-all duration-300 group-hover/item:translate-x-2 text-base">
-											Blog
-										</span>
-										<span className="opacity-0 group-hover/item:opacity-100 transform translate-x-3 group-hover/item:translate-x-0 transition-all duration-300 text-red-600">
-											→
-										</span>
-									</Link>
+							<div className="absolute left-0 mt-4 w-64 bg-white backdrop-blur-xl border border-gray-100 rounded-3xl shadow-2xl transform opacity-0 translate-y-4 scale-95 pointer-events-none transition-all duration-400 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100 group-hover:pointer-events-auto overflow-hidden">
+								<div className="p-4 space-y-1">
+									{[
+										{ label: 'Blog', href: '/blog' },
+										{ label: 'Research', href: '/research' },
+										{ label: 'Certifications', href: '/certifications' },
+										{ label: 'Treatment Guidelines', href: '/treatment-guidelines' },
+									].map((item) => (
+										<Link
+											key={item.href}
+											to={item.href}
+											className="flex items-center justify-between px-5 py-3 text-gray-600 hover:bg-gradient-to-r hover:from-red-50 hover:via-red-50/90 hover:to-transparent hover:text-red-600 font-medium tracking-wide rounded-xl transition-all duration-300 group/item border border-transparent hover:border-red-100">
+											<span className="transform transition-all duration-300 group-hover/item:translate-x-2">{item.label}</span>
+											<span className="opacity-0 group-hover/item:opacity-100 transform translate-x-3 group-hover/item:translate-x-0 transition-all duration-300 text-red-600">→</span>
+										</Link>
+									))}
 								</div>
 							</div>
 						</div>
@@ -212,13 +238,9 @@ const Navbar = () => {
 				aria-hidden={!isMenuOpen}>
 				<div className="px-6 pt-6 pb-8 space-y-2">
 					<Link
-						to="/"
+						to="/#about"
 						onClick={() => setIsMenuOpen(false)}
-						className={`block px-5 py-4 rounded-2xl font-medium text-base transition-all duration-400 transform hover:translate-x-1 ${
-							isActivePath("/")
-								? "bg-gradient-to-r from-red-50 via-red-100/80 to-red-50 text-red-600 border border-red-200"
-								: "text-gray-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-transparent hover:text-red-600"
-						}`}>
+						className="block px-5 py-4 rounded-2xl font-medium text-base transition-all duration-400 transform hover:translate-x-1 text-gray-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-transparent hover:text-red-600">
 						About
 					</Link>
 
@@ -236,23 +258,53 @@ const Navbar = () => {
 							</span>
 						</button>
 						<div
-							className={`pl-4 space-y-2 transition-all duration-400 overflow-hidden ${
+							className={`pl-4 space-y-1 transition-all duration-400 overflow-hidden ${
 								activeDropdown === "product"
-									? "max-h-60 opacity-100"
+									? "max-h-96 opacity-100"
 									: "max-h-0 opacity-0"
 							}`}>
 							<Link
 								to="/for-doctors"
 								onClick={() => setIsMenuOpen(false)}
-								className="block px-5 py-3.5 text-gray-600 hover:bg-gradient-to-r hover:from-red-50 hover:via-red-50/80 hover:to-transparent hover:text-red-600 rounded-xl font-medium text-base tracking-wide transition-all duration-400 transform hover:translate-x-1 border border-transparent hover:border-red-100">
+								className="block px-5 py-3 text-red-600 font-bold text-base tracking-wide rounded-xl border-b border-red-100 transition-all duration-300">
 								For Doctors
 							</Link>
+							{[
+								{ label: 'Diagnostic Center', href: '/for-doctors#diagnostics' },
+								{ label: 'Care Coordination', href: '/for-doctors#coordination' },
+								{ label: 'Patient Monitoring', href: '/for-doctors#monitoring' },
+								{ label: 'Analytics', href: '/for-doctors#analytics' },
+							].map((item) => (
+								<Link
+									key={item.href}
+									to={item.href}
+									onClick={() => setIsMenuOpen(false)}
+									className="flex items-center px-5 py-2 text-sm text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200">
+									<span className="w-1 h-1 bg-red-400 rounded-full mr-3 flex-shrink-0" />
+									{item.label}
+								</Link>
+							))}
 							<Link
 								to="/for-patients"
 								onClick={() => setIsMenuOpen(false)}
-								className="block px-5 py-3.5 text-gray-700 hover:bg-gradient-to-r hover:from-red-50 hover:via-red-50/80 hover:to-transparent hover:text-red-600 rounded-xl font-medium text-base tracking-wide transition-all duration-400 transform hover:translate-x-1 border border-transparent hover:border-red-100">
+								className="block px-5 py-3 text-red-600 font-bold text-base tracking-wide rounded-xl border-b border-red-100 transition-all duration-300 mt-2">
 								For Patients
 							</Link>
+							{[
+								{ label: 'Health Monitoring', href: '/for-patients#monitoring' },
+								{ label: 'Personalized Care', href: '/for-patients#care' },
+								{ label: 'Emergency Support', href: '/for-patients#support' },
+								{ label: 'Health Insights', href: '/for-patients#insights' },
+							].map((item) => (
+								<Link
+									key={item.href}
+									to={item.href}
+									onClick={() => setIsMenuOpen(false)}
+									className="flex items-center px-5 py-2 text-sm text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200">
+									<span className="w-1 h-1 bg-red-400 rounded-full mr-3 flex-shrink-0" />
+									{item.label}
+								</Link>
+							))}
 						</div>
 					</div>
 
@@ -270,17 +322,25 @@ const Navbar = () => {
 							</span>
 						</button>
 						<div
-							className={`pl-4 space-y-2 transition-all duration-400 overflow-hidden ${
+							className={`pl-4 space-y-1 transition-all duration-400 overflow-hidden ${
 								activeDropdown === "resources"
 									? "max-h-60 opacity-100"
 									: "max-h-0 opacity-0"
 							}`}>
-							<Link
-								to="/blog"
-								onClick={() => setIsMenuOpen(false)}
-								className="block px-5 py-3.5 text-gray-700 hover:bg-gradient-to-r hover:from-red-50 hover:via-red-50/80 hover:to-transparent hover:text-red-600 rounded-xl font-medium text-base tracking-wide transition-all duration-400 transform hover:translate-x-1 border border-transparent hover:border-red-100">
-								Blog
-							</Link>
+							{[
+								{ label: 'Blog', href: '/blog' },
+								{ label: 'Research', href: '/research' },
+								{ label: 'Certifications', href: '/certifications' },
+								{ label: 'Treatment Guidelines', href: '/treatment-guidelines' },
+							].map((item) => (
+								<Link
+									key={item.href}
+									to={item.href}
+									onClick={() => setIsMenuOpen(false)}
+									className="block px-5 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-red-50 hover:via-red-50/80 hover:to-transparent hover:text-red-600 rounded-xl font-medium text-base tracking-wide transition-all duration-300 transform hover:translate-x-1 border border-transparent hover:border-red-100">
+									{item.label}
+								</Link>
+							))}
 						</div>
 					</div>
 

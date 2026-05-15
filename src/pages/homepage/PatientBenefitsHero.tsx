@@ -2,7 +2,7 @@ import { motion, useInView } from 'framer-motion'
 import { HeartPulse } from 'lucide-react'
 import React, { useRef } from 'react'
 
-import { Button, FloatingElements } from './DoctorBenefitsShared'
+import { Button, FloatingElements, cardSpring, iconSpring } from './DoctorBenefitsShared'
 
 // Animation variants
 const staggerContainer = {
@@ -10,14 +10,20 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.13,
+      delayChildren: 0.1,
     },
   },
 }
 
 const scaleIn = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1 },
+  hidden: { opacity: 0, y: 24, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: 'circOut' as const },
+  },
 }
 
 // ============================================================================
@@ -278,11 +284,10 @@ export function ValueProps() {
           <motion.div
             key={idx}
             variants={scaleIn}
-            whileHover={{
-              scale: 1.02,
-              y: -5,
-            }}
-            className="bg-white backdrop-blur-sm p-10 group hover:bg-gray-50 transition-all duration-300 relative overflow-hidden cursor-pointer"
+            whileHover={{ backgroundColor: '#f9fafb' }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="bg-white backdrop-blur-sm p-10 group transition-colors duration-300 relative overflow-hidden cursor-pointer"
+            style={{ willChange: 'background-color' }}
           >
             <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
               <prop.icon
@@ -292,12 +297,8 @@ export function ValueProps() {
             </div>
 
             <motion.div
-              whileHover={{
-                rotate: 360,
-              }}
-              transition={{
-                duration: 0.6,
-              }}
+              whileHover={{ scale: 1.18, rotate: 8 }}
+              transition={iconSpring}
             >
               <prop.icon
                 className="w-10 h-10 text-red-600 mb-6"

@@ -19,7 +19,7 @@ import {
 } from 'lucide-react'
 import { useRef, useState } from 'react'
 
-import { Button, Modal, Section, scaleIn, staggerContainer } from './DoctorBenefitsShared'
+import { Button, Modal, Section, cardSpring, iconSpring, scaleIn, staggerContainer } from './DoctorBenefitsShared'
 
 // ============================================================================
 // DIAGNOSTIC CENTER COMPONENT (Light Background - bg-gray-100)
@@ -40,7 +40,12 @@ export function DiagnosticCenter() {
   ]
 
   return (
-    <Section id="diagnostics" className="bg-gray-100 text-gray-900">
+    <Section id="diagnostics" className="bg-gradient-to-br from-slate-900 via-slate-900 to-blue-950 text-white overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div animate={{ y: [0, -25, 0], x: [0, 15, 0] }} transition={{ duration: 9, repeat: Infinity }} className="absolute top-1/3 left-1/5 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
+        <motion.div animate={{ y: [0, 30, 0], x: [0, -20, 0] }} transition={{ duration: 11, repeat: Infinity }} className="absolute bottom-1/3 right-1/5 w-80 h-80 bg-indigo-500/15 rounded-full blur-3xl" />
+        <motion.div animate={{ y: [0, -15, 0], x: [0, 10, 0] }} transition={{ duration: 14, repeat: Infinity }} className="absolute top-1/2 left-2/3 w-64 h-64 bg-red-500/10 rounded-full blur-3xl" />
+      </div>
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 50 }}
@@ -49,10 +54,10 @@ export function DiagnosticCenter() {
       >
         <div className="mb-12 flex flex-col md:flex-row justify-between items-end">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-2 tracking-tight text-gray-900">
+            <h2 className="text-4xl md:text-5xl font-bold mb-2 tracking-tight text-white">
               DIAGNOSTIC COMMAND CENTER
             </h2>
-            <p className="text-gray-600 max-w-2xl italic">
+            <p className="text-blue-200/70 max-w-2xl italic">
               Centralized intelligence for real-time cardiac monitoring and analysis.
             </p>
           </div>
@@ -60,9 +65,9 @@ export function DiagnosticCenter() {
             <motion.span
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-2 h-2 bg-red-600 rounded-full"
+              className="w-2 h-2 bg-red-500 rounded-full"
             />
-            <span className="text-xs font-bold uppercase tracking-wider text-red-600">
+            <span className="text-xs font-bold uppercase tracking-wider text-red-400">
               Live Stream Active
             </span>
           </div>
@@ -234,11 +239,11 @@ export function DiagnosticTools() {
   }
 
   return (
-    <Section id="tools" className="bg-white border-t border-gray-200 relative overflow-hidden">
+    <Section id="tools" className="bg-blue-100 relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div animate={{ y: [0, -30, 0], x: [0, 20, 0] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
-        <motion.div animate={{ y: [0, 40, 0], x: [0, -30, 0] }} transition={{ duration: 10, repeat: Infinity }} className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
-        <motion.div animate={{ y: [0, -20, 0], x: [0, 15, 0] }} transition={{ duration: 12, repeat: Infinity }} className="absolute top-1/2 right-1/3 w-64 h-64 bg-purple-600/5 rounded-full blur-3xl" />
+        <motion.div animate={{ y: [0, -30, 0], x: [0, 20, 0] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl" />
+        <motion.div animate={{ y: [0, 40, 0], x: [0, -30, 0] }} transition={{ duration: 10, repeat: Infinity }} className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl" />
+        <motion.div animate={{ y: [0, -20, 0], x: [0, 15, 0] }} transition={{ duration: 12, repeat: Infinity }} className="absolute top-1/2 right-1/3 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl" />
       </div>
 
       <motion.div ref={ref} initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="relative z-10">
@@ -249,22 +254,48 @@ export function DiagnosticTools() {
 
         <motion.div variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {tools.map((tool, idx) => (
-            <motion.div key={idx} variants={scaleIn} whileHover={{ scale: 1.03, y: -10 }} className="group cursor-pointer">
-              <div className="border-2 border-red-600 bg-white p-8 h-full hover:border-red-600 transition-all duration-300 flex flex-col rounded-3xl shadow-lg hover:shadow-xl hover:shadow-red-600/10">
-                <motion.div whileHover={{ rotate: 360, scale: 1.1 }} transition={{ duration: 0.6 }} className="mb-6 inline-block p-3 bg-gray-100 rounded-2xl group-hover:bg-red-600 transition-colors w-fit">
-                  <tool.icon className="w-8 h-8 text-gray-700 group-hover:text-white transition-colors" />
+            <motion.div
+              key={idx}
+              variants={scaleIn}
+              whileHover={{ y: -10 }}
+              transition={cardSpring}
+              className="group cursor-pointer"
+            >
+              <div className="border-2 border-red-600 bg-white p-8 h-full flex flex-col shadow-md transition-shadow duration-300 hover:shadow-2xl hover:shadow-red-600/20">
+                <motion.div
+                  whileHover={{ scale: 1.18, rotate: 8 }}
+                  transition={iconSpring}
+                  className="mb-6 inline-block p-3 bg-blue-200 group-hover:bg-red-600 transition-colors duration-300 w-fit"
+                >
+                  <tool.icon className="w-8 h-8 text-blue-800 group-hover:text-white transition-colors duration-300" />
                 </motion.div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">{tool.title}</h3>
                 <ul className="space-y-4 mb-8 flex-1">
                   {tool.features.map((feature, i) => (
-                    <motion.li key={i} initial={{ opacity: 0, x: -20 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.1 * i }} className="flex items-start gap-3 text-gray-600 text-sm">
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.18 + 0.1 * i, ease: 'easeOut', duration: 0.4 }}
+                      className="flex items-start gap-3 text-gray-600 text-sm"
+                    >
                       <span className="w-1.5 h-1.5 bg-red-600 mt-1.5 flex-shrink-0 rounded-full" />
                       <span>{feature}</span>
                     </motion.li>
                   ))}
                 </ul>
-                <button onClick={() => openModal(tool)} className="inline-flex items-center text-red-600 font-bold uppercase text-sm tracking-wider hover:text-red-700 transition-colors group-hover:translate-x-2 duration-300">
-                  Learn More <ArrowRight className="ml-2 w-4 h-4" />
+                <button
+                  onClick={() => openModal(tool)}
+                  className="inline-flex items-center text-red-600 font-bold uppercase text-sm tracking-wider hover:text-red-700 transition-colors"
+                >
+                  Learn More
+                  <motion.span
+                    className="ml-2 inline-flex"
+                    whileHover={{ x: 4 }}
+                    transition={iconSpring}
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.span>
                 </button>
               </div>
             </motion.div>
@@ -318,27 +349,49 @@ export function CareCoordination() {
   ]
 
   return (
-    <Section id="coordination" className="bg-gray-100 text-gray-900">
+    <Section id="coordination" className="bg-gradient-to-br from-teal-950 via-slate-900 to-teal-950 text-white overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div animate={{ y: [0, -20, 0], x: [0, 25, 0] }} transition={{ duration: 10, repeat: Infinity }} className="absolute top-1/4 right-1/4 w-96 h-96 bg-teal-400/15 rounded-full blur-3xl" />
+        <motion.div animate={{ y: [0, 35, 0], x: [0, -15, 0] }} transition={{ duration: 8, repeat: Infinity }} className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl" />
+        <motion.div animate={{ y: [0, -10, 0], x: [0, 20, 0] }} transition={{ duration: 12, repeat: Infinity }} className="absolute top-3/4 right-1/3 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
+      </div>
       <motion.div ref={ref} initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
         <div className="mb-16 max-w-3xl">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">CARE COORDINATION & WORKFLOW</h2>
-          <p className="text-gray-600 text-lg italic">Streamline communication and data flow between patients, cardiologists, and care teams.</p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">CARE COORDINATION & WORKFLOW</h2>
+          <p className="text-teal-200/70 text-lg italic">Streamline communication and data flow between patients, cardiologists, and care teams.</p>
         </div>
 
-        <motion.div variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-300 border-2 border-red-600 rounded-3xl overflow-hidden">
+        <motion.div variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="grid grid-cols-1 md:grid-cols-2 gap-px bg-teal-800/60 border-2 border-red-600 rounded-3xl overflow-hidden">
           {features.map((feature, idx) => (
-            <motion.div key={idx} variants={scaleIn} whileHover={{ scale: 1.02 }} className="bg-white border-2 border-red-600 p-10 hover:bg-gray-50 transition-all cursor-pointer">
+            <motion.div
+              key={idx}
+              variants={scaleIn}
+              whileHover={{ backgroundColor: '#f0fdfa' }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+              className="bg-white border-2 border-red-600 p-10 cursor-pointer"
+              style={{ willChange: 'background-color' }}
+            >
               <div className="flex items-start justify-between mb-6">
-                <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }} className="p-3 bg-red-600 text-white rounded-2xl shadow-lg shadow-red-600/30">
+                <motion.div
+                  whileHover={{ scale: 1.18, rotate: 8 }}
+                  transition={iconSpring}
+                  className="p-3 bg-red-600 text-white shadow-lg shadow-red-600/30"
+                >
                   <feature.icon className="w-6 h-6" />
                 </motion.div>
-                <span className="font-mono text-xs text-gray-400">0{idx + 1}</span>
+                <span className="font-mono text-xs text-teal-600">0{idx + 1}</span>
               </div>
               <h3 className="text-xl font-bold mb-2 uppercase tracking-tight text-gray-900">{feature.title}</h3>
               <p className="text-gray-600 mb-6 text-sm italic">{feature.description}</p>
               <ul className="space-y-3 mb-8 border-t border-gray-200 pt-6">
                 {feature.items.map((item, i) => (
-                  <motion.li key={i} initial={{ opacity: 0, x: -20 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ delay: 0.1 * i }} className="text-sm text-gray-600 flex items-center gap-2">
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.18 + 0.1 * i, ease: 'easeOut', duration: 0.4 }}
+                    className="text-sm text-gray-600 flex items-center gap-2"
+                  >
                     <span className="w-1 h-1 bg-red-600 rounded-full" />
                     {item}
                   </motion.li>
@@ -370,11 +423,11 @@ export function PatientMonitoring() {
   ]
 
   return (
-    <Section id="monitoring" className="bg-white border-t border-gray-200 relative overflow-hidden">
+    <Section id="monitoring" className="bg-violet-100 relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div animate={{ y: [0, -30, 0], x: [0, 20, 0] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
-        <motion.div animate={{ y: [0, 40, 0], x: [0, -30, 0] }} transition={{ duration: 10, repeat: Infinity }} className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl" />
-        <motion.div animate={{ y: [0, -20, 0], x: [0, 15, 0] }} transition={{ duration: 12, repeat: Infinity }} className="absolute top-1/2 right-1/3 w-64 h-64 bg-purple-600/5 rounded-full blur-3xl" />
+        <motion.div animate={{ y: [0, -30, 0], x: [0, 20, 0] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl" />
+        <motion.div animate={{ y: [0, 40, 0], x: [0, -30, 0] }} transition={{ duration: 10, repeat: Infinity }} className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-600/15 rounded-full blur-3xl" />
+        <motion.div animate={{ y: [0, -20, 0], x: [0, 15, 0] }} transition={{ duration: 12, repeat: Infinity }} className="absolute top-1/2 right-1/3 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl" />
       </div>
 
       <motion.div ref={ref} initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ duration: 0.8 }} className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
@@ -383,8 +436,8 @@ export function PatientMonitoring() {
             CONTINUOUS <br /> PATIENT <br />
             <span className="text-red-600">MONITORING</span>
           </h2>
-          <p className="text-gray-600 mb-8 italic">Extend care beyond the clinic walls with intelligent tracking and engagement tools.</p>
-          <motion.div whileHover={{ scale: 1.05 }} className="p-6 border-2 border-red-600 bg-gray-50 rounded-2xl shadow-lg">
+          <p className="text-gray-700 mb-8 italic">Extend care beyond the clinic walls with intelligent tracking and engagement tools.</p>
+          <motion.div whileHover={{ scale: 1.05 }} className="p-6 border-2 border-red-600 bg-white rounded-2xl shadow-lg">
             <motion.div initial={{ scale: 0 }} animate={isInView ? { scale: 1 } : {}} transition={{ duration: 0.6, delay: 0.3 }} className="text-5xl font-bold text-gray-900 mb-2">
               73%
             </motion.div>
@@ -395,14 +448,27 @@ export function PatientMonitoring() {
         <div className="lg:col-span-8">
           <motion.div variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {features.map((feature, idx) => (
-              <motion.div key={idx} variants={scaleIn} whileHover={{ scale: 1.05, y: -5 }} className="border-2 border-red-600 bg-white p-8 hover:border-red-600/50 transition-all group cursor-pointer rounded-3xl shadow-lg">
-                <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }}>
-                  <feature.icon className="w-8 h-8 text-red-600 mb-6" />
+              <motion.div
+                key={idx}
+                variants={scaleIn}
+                whileHover={{ y: -8 }}
+                transition={cardSpring}
+                className="border-2 border-red-600 bg-white p-8 group cursor-pointer shadow-md transition-shadow duration-300 hover:shadow-2xl hover:shadow-violet-500/20"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.18, rotate: 8 }}
+                  transition={iconSpring}
+                  className="inline-block mb-6"
+                >
+                  <feature.icon className="w-8 h-8 text-red-600" />
                 </motion.div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed mb-6">{feature.description}</p>
-                <a href="#" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-red-600 transition-colors">
-                  Learn More <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                <a href="#" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-red-600 transition-colors duration-300">
+                  Learn More
+                  <motion.span className="ml-2 inline-flex" whileHover={{ x: 4 }} transition={iconSpring}>
+                    <ArrowRight className="w-3 h-3" />
+                  </motion.span>
                 </a>
               </motion.div>
             ))}
@@ -421,56 +487,79 @@ export function PerformanceAnalytics() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <Section id="analytics" className="bg-gray-100 text-gray-900">
+    <Section id="analytics" className="bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 text-white overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div animate={{ y: [0, -30, 0], x: [0, 20, 0] }} transition={{ duration: 8, repeat: Infinity }} className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
+        <motion.div animate={{ y: [0, 40, 0], x: [0, -30, 0] }} transition={{ duration: 10, repeat: Infinity }} className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
+        <motion.div animate={{ y: [0, -20, 0], x: [0, 15, 0] }} transition={{ duration: 12, repeat: Infinity }} className="absolute top-1/2 right-1/3 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl" />
+      </div>
       <motion.div ref={ref} initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }}>
         <div className="mb-16 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">PERFORMANCE & OUTCOMES ANALYTICS</h2>
-          <p className="text-gray-600 italic">Quantify your clinical impact and optimize team efficiency.</p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">PERFORMANCE & OUTCOMES ANALYTICS</h2>
+          <p className="text-gray-400 italic">Quantify your clinical impact and optimize team efficiency.</p>
         </div>
 
         <motion.div variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <motion.div variants={scaleIn} whileHover={{ scale: 1.02, y: -5 }} className="bg-white border-2 border-red-600 p-10 flex flex-col rounded-3xl shadow-xl hover:shadow-red-600/10 transition-all">
-            <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }} className="w-12 h-12 bg-red-600 text-white flex items-center justify-center mb-6 rounded-2xl shadow-lg shadow-red-600/30">
+          <motion.div
+            variants={scaleIn}
+            whileHover={{ y: -8 }}
+            transition={cardSpring}
+            className="bg-white/5 border border-red-500/60 backdrop-blur-sm p-10 flex flex-col shadow-lg transition-shadow duration-300 hover:shadow-2xl hover:shadow-red-500/20 hover:border-red-400/70 hover:bg-white/8"
+          >
+            <motion.div
+              whileHover={{ scale: 1.18, rotate: 8 }}
+              transition={iconSpring}
+              className="w-12 h-12 bg-red-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-red-600/30"
+            >
               <BarChart className="w-6 h-6" />
             </motion.div>
-            <h3 className="text-2xl font-bold mb-4 text-gray-900">Patient Outcomes Dashboard</h3>
-            <p className="text-gray-600 mb-8 flex-1">Track recovery metrics, efficiency scores, and compliance rates. Benchmark your institution's performance against peer data.</p>
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.5 }} className="bg-gray-50 border-2 border-red-600 p-6 mb-8 rounded-2xl">
+            <h3 className="text-2xl font-bold mb-4 text-white">Patient Outcomes Dashboard</h3>
+            <p className="text-gray-300 mb-8 flex-1">Track recovery metrics, efficiency scores, and compliance rates. Benchmark your institution's performance against peer data.</p>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.5 }} className="bg-white/5 border border-red-500/40 p-6 mb-8 rounded-2xl">
               <div className="flex justify-between items-end mb-2">
-                <span className="text-sm font-bold uppercase text-gray-600">Recovery Rate</span>
-                <motion.span initial={{ scale: 0 }} animate={isInView ? { scale: 1 } : {}} transition={{ delay: 0.7, type: 'spring' }} className="text-2xl font-bold text-green-600">
+                <span className="text-sm font-bold uppercase text-gray-300">Recovery Rate</span>
+                <motion.span initial={{ scale: 0 }} animate={isInView ? { scale: 1 } : {}} transition={{ delay: 0.7, type: 'spring' }} className="text-2xl font-bold text-green-400">
                   +12.4%
                 </motion.span>
               </div>
-              <div className="w-full bg-gray-200 h-1 rounded-full overflow-hidden">
+              <div className="w-full bg-gray-700 h-1 rounded-full overflow-hidden">
                 <motion.div initial={{ width: 0 }} animate={{ width: '85%' }} transition={{ duration: 1, delay: 0.8 }} className="bg-green-500 h-1" />
               </div>
             </motion.div>
-            <a href="#" className="inline-flex items-center font-bold uppercase tracking-wider text-sm text-red-600 hover:text-red-700 transition-colors group">
+            <a href="#" className="inline-flex items-center font-bold uppercase tracking-wider text-sm text-red-400 hover:text-red-300 transition-colors group">
               View Analytics Demo <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
 
-          <motion.div variants={scaleIn} whileHover={{ scale: 1.02, y: -5 }} className="bg-white border-2 border-red-600 p-10 flex flex-col rounded-3xl shadow-xl hover:shadow-red-600/10 transition-all">
-            <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }} className="w-12 h-12 bg-red-600 text-white flex items-center justify-center mb-6 rounded-2xl shadow-lg shadow-red-600/30">
+          <motion.div
+            variants={scaleIn}
+            whileHover={{ y: -8 }}
+            transition={cardSpring}
+            className="bg-white/5 border border-red-500/60 backdrop-blur-sm p-10 flex flex-col shadow-lg transition-shadow duration-300 hover:shadow-2xl hover:shadow-red-500/20 hover:border-red-400/70 hover:bg-white/8"
+          >
+            <motion.div
+              whileHover={{ scale: 1.18, rotate: 8 }}
+              transition={iconSpring}
+              className="w-12 h-12 bg-red-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-red-600/30"
+            >
               <Users className="w-6 h-6" />
             </motion.div>
-            <h3 className="text-2xl font-bold mb-4 text-gray-900">Care Team Collaboration Hub</h3>
-            <p className="text-gray-600 mb-8 flex-1">Your command center for multidisciplinary care. Assign cases, centralize updates, and visualize workflow bottlenecks.</p>
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.5 }} className="bg-gray-50 border-2 border-red-600 p-6 mb-8 rounded-2xl">
+            <h3 className="text-2xl font-bold mb-4 text-white">Care Team Collaboration Hub</h3>
+            <p className="text-gray-300 mb-8 flex-1">Your command center for multidisciplinary care. Assign cases, centralize updates, and visualize workflow bottlenecks.</p>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.5 }} className="bg-white/5 border border-red-500/40 p-6 mb-8 rounded-2xl">
               <div className="flex -space-x-2 mb-4">
                 {[1, 2, 3, 4].map((i) => (
-                  <motion.div key={i} initial={{ scale: 0 }} animate={isInView ? { scale: 1 } : {}} transition={{ delay: 0.6 + i * 0.1 }} whileHover={{ scale: 1.2, zIndex: 10 }} className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs font-bold text-gray-600 cursor-pointer">
+                  <motion.div key={i} initial={{ scale: 0 }} animate={isInView ? { scale: 1 } : {}} transition={{ delay: 0.6 + i * 0.1 }} whileHover={{ scale: 1.2, zIndex: 10 }} className="w-8 h-8 rounded-full bg-gray-600 border-2 border-gray-700 flex items-center justify-center text-xs font-bold text-gray-300 cursor-pointer">
                     U{i}
                   </motion.div>
                 ))}
-                <motion.div initial={{ scale: 0 }} animate={isInView ? { scale: 1 } : {}} transition={{ delay: 1 }} whileHover={{ scale: 1.2, zIndex: 10 }} className="w-8 h-8 rounded-full bg-red-600 text-white border-2 border-white flex items-center justify-center text-xs font-bold cursor-pointer">
+                <motion.div initial={{ scale: 0 }} animate={isInView ? { scale: 1 } : {}} transition={{ delay: 1 }} whileHover={{ scale: 1.2, zIndex: 10 }} className="w-8 h-8 rounded-full bg-red-600 text-white border-2 border-gray-700 flex items-center justify-center text-xs font-bold cursor-pointer">
                   +8
                 </motion.div>
               </div>
-              <div className="text-xs text-gray-600 font-mono">ACTIVE_CASES: 24 // URGENT: 3</div>
+              <div className="text-xs text-gray-400 font-mono">ACTIVE_CASES: 24 // URGENT: 3</div>
             </motion.div>
-            <a href="#" className="inline-flex items-center font-bold uppercase tracking-wider text-sm text-red-600 hover:text-red-700 transition-colors group">
+            <a href="#" className="inline-flex items-center font-bold uppercase tracking-wider text-sm text-red-400 hover:text-red-300 transition-colors group">
               Explore Collaboration Tools <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>

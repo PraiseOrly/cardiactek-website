@@ -83,7 +83,7 @@ export default function CardiacTekHero() {
 	};
 
 	return (
-		<section className="relative w-full h-screen overflow-hidden bg-gray-900 flex items-center pt-14">
+		<section id="home" className="relative w-full h-screen overflow-hidden bg-gray-900 flex items-center pt-14">
 			{/* Slide */}
 			<AnimatePresence initial={false} custom={direction}>
 				<motion.div

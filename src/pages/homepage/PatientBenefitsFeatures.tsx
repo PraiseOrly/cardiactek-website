@@ -17,7 +17,7 @@ import {
 } from 'lucide-react'
 import { useRef, useState } from 'react'
 
-import { Button, Modal, Section, scaleIn, staggerContainer } from './DoctorBenefitsShared'
+import { Button, Modal, Section, cardSpring, iconSpring, scaleIn, staggerContainer } from './DoctorBenefitsShared'
 
 // ============================================================================
 // HEALTH MONITORING DASHBOARD COMPONENT
@@ -253,9 +253,9 @@ export function PersonalizedCareTools() {
 
         <motion.div variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {tools.map((tool, idx) => (
-            <motion.div key={idx} variants={scaleIn} whileHover={{ scale: 1.03, y: -10 }} className="group cursor-pointer">
-              <div className="border border-white/20 bg-gray-900/80 backdrop-blur-sm p-8 h-full hover:border-red-600 transition-all duration-300 flex flex-col rounded-3xl shadow-xl hover:shadow-2xl hover:shadow-red-600/20">
-                <motion.div whileHover={{ rotate: 360, scale: 1.1 }} transition={{ duration: 0.6 }} className="mb-6 inline-block p-3 bg-white/5 rounded-2xl group-hover:bg-red-600 transition-colors w-fit">
+            <motion.div key={idx} variants={scaleIn} whileHover={{ y: -6, boxShadow: '0 16px 32px rgba(220,38,38,0.18)' }} transition={cardSpring} className="group cursor-pointer">
+              <div className="border border-white/20 bg-gray-900/80 backdrop-blur-sm p-8 h-full hover:border-red-600 transition-colors duration-300 flex flex-col rounded-3xl shadow-xl">
+                <motion.div whileHover={{ scale: 1.18, rotate: 8 }} transition={iconSpring} className="mb-6 inline-block p-3 bg-white/5 rounded-2xl group-hover:bg-red-600 transition-colors w-fit">
                   <tool.icon className="w-8 h-8 text-white" />
                 </motion.div>
                 <h3 className="text-2xl font-bold text-white mb-6">{tool.title}</h3>
@@ -331,9 +331,9 @@ export function EmergencySupport() {
 
         <motion.div variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border border-white/10 rounded-3xl overflow-hidden">
           {features.map((feature, idx) => (
-            <motion.div key={idx} variants={scaleIn} whileHover={{ scale: 1.02 }} className="bg-gray-800/80 backdrop-blur-sm p-10 hover:bg-gray-700/80 transition-all cursor-pointer">
+            <motion.div key={idx} variants={scaleIn} whileHover={{ backgroundColor: 'rgba(55,65,81,0.8)' }} transition={{ duration: 0.25, ease: 'easeOut' }} className="bg-gray-800/80 backdrop-blur-sm p-10 cursor-pointer" style={{ willChange: 'background-color' }}>
               <div className="flex items-start justify-between mb-6">
-                <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }} className="p-3 bg-red-600 text-white rounded-2xl shadow-lg shadow-red-600/30">
+                <motion.div whileHover={{ scale: 1.18, rotate: 8 }} transition={iconSpring} className="p-3 bg-red-600 text-white rounded-2xl shadow-lg shadow-red-600/30">
                   <feature.icon className="w-6 h-6" />
                 </motion.div>
                 <span className="font-mono text-xs text-gray-400">0{idx + 1}</span>
@@ -375,8 +375,8 @@ export function HealthInsights() {
         </div>
 
         <motion.div variants={staggerContainer} initial="hidden" animate={isInView ? 'visible' : 'hidden'} className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <motion.div variants={scaleIn} whileHover={{ scale: 1.02, y: -5 }} className="bg-white backdrop-blur-sm border border-gray-200 p-10 flex flex-col rounded-3xl shadow-2xl hover:shadow-red-600/10 transition-all">
-            <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }} className="w-12 h-12 bg-red-600 text-white flex items-center justify-center mb-6 rounded-2xl shadow-lg shadow-red-600/30">
+          <motion.div variants={scaleIn} whileHover={{ y: -6, boxShadow: '0 16px 32px rgba(220,38,38,0.12)' }} transition={cardSpring} className="bg-white backdrop-blur-sm border border-gray-200 p-10 flex flex-col shadow-card">
+            <motion.div whileHover={{ scale: 1.18, rotate: 8 }} transition={iconSpring} className="w-12 h-12 bg-red-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-red-600/30">
               <TrendingUp className="w-6 h-6" />
             </motion.div>
             <h3 className="text-2xl font-bold mb-4 text-gray-900">Health Trend Analysis</h3>
@@ -397,8 +397,8 @@ export function HealthInsights() {
             </a>
           </motion.div>
 
-          <motion.div variants={scaleIn} whileHover={{ scale: 1.02, y: -5 }} className="bg-white backdrop-blur-sm border border-gray-200 p-10 flex flex-col rounded-3xl shadow-2xl hover:shadow-red-600/10 transition-all">
-            <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.6 }} className="w-12 h-12 bg-red-600 text-white flex items-center justify-center mb-6 rounded-2xl shadow-lg shadow-red-600/30">
+          <motion.div variants={scaleIn} whileHover={{ y: -6, boxShadow: '0 16px 32px rgba(220,38,38,0.12)' }} transition={cardSpring} className="bg-white backdrop-blur-sm border border-gray-200 p-10 flex flex-col shadow-card">
+            <motion.div whileHover={{ scale: 1.18, rotate: 8 }} transition={iconSpring} className="w-12 h-12 bg-red-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-red-600/30">
               <Activity className="w-6 h-6" />
             </motion.div>
             <h3 className="text-2xl font-bold mb-4 text-gray-900">Lifestyle Impact Tracking</h3>

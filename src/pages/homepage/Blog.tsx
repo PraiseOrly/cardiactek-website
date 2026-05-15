@@ -2,23 +2,25 @@ import { motion, useInView } from 'framer-motion'
 import { ArrowRight, Calendar, Clock, User } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Footer from '../../components/Homepage/Footer'
 
 import Navbar from '../../components/Homepage/Navbar'
+import { cardSpring } from './DoctorBenefitsShared'
 
 // Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
 }
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.13, delayChildren: 0.1 } },
 }
 
 const scaleIn = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1 },
+  hidden: { opacity: 0, y: 24, scale: 0.96 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: 'circOut' as const } },
 }
 
 // ============================================================================
@@ -330,8 +332,9 @@ function BlogPostsGrid() {
             <motion.article
               key={post.id}
               variants={scaleIn}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-white backdrop-blur-sm border border-gray-200 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-red-600/10 transition-all duration-300 group cursor-pointer"
+              whileHover={{ y: -6, boxShadow: '0 16px 32px rgba(220,38,38,0.12)' }}
+              transition={cardSpring}
+              className="bg-white backdrop-blur-sm border border-gray-200 rounded-3xl overflow-hidden shadow-card group cursor-pointer"
             >
               <div className="aspect-video bg-gray-100 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-red-600/5 to-blue-600/5" />
@@ -449,6 +452,7 @@ const Blog = () => {
         <BlogPostsGrid />
         <NewsletterSubscription />
       </main>
+      <Footer />
     </div>
   )
 }

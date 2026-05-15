@@ -1,4 +1,5 @@
 
+import Footer from '../../components/Homepage/Footer'
 import Navbar from '../../components/Homepage/Navbar'
 import { CareCoordination, DiagnosticCenter, DiagnosticTools, PatientMonitoring, PerformanceAnalytics } from './DoctorBenefitsFeatures'
 import { Hero, ValueProps } from './DoctorBenefitsHero'
@@ -19,6 +20,7 @@ const DoctorBenefits = () => {
         <PatientMonitoring />
         <PerformanceAnalytics />
       </main>
+      <Footer />
     </div>
   )
 }

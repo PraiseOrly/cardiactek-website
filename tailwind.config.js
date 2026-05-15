@@ -1,10 +1,3 @@
-export default {content: [
-  './index.html',
-  './src/**/*.{js,ts,jsx,tsx}'
-],
-}
-
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -14,13 +7,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'surgical-teal': '#06b6d4',
         'black': '#000000',
         'white': '#FFFFFF',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'], // For technical data
+        mono: ['JetBrains Mono', 'monospace'],
       },
       borderRadius: {
         DEFAULT: '0px',
@@ -31,7 +23,13 @@ module.exports = {
         'xl': '0px',
         '2xl': '0px',
         '3xl': '0px',
-        'full': '0px',
+        'full': '9999px',
+      },
+      boxShadow: {
+        'glow-red': '0 0 24px rgba(220, 38, 38, 0.35)',
+        'glow-red-sm': '0 0 12px rgba(220, 38, 38, 0.2)',
+        'card': '0 4px 16px rgba(0,0,0,0.12)',
+        'card-hover': '0 16px 32px rgba(0,0,0,0.18)',
       },
       backgroundImage: {
         'grid-pattern': "linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px)",

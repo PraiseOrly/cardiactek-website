@@ -19,17 +19,17 @@ const Footer: React.FC = () => {
 					<div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
 						<Link
 							to="/request-demo"
-							className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+							className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 font-bold uppercase tracking-wider transition-colors text-sm">
 							Request Demo
 						</Link>
 						<Link
 							to="/join-beta"
-							className="bg-transparent border border-red-600 hover:bg-red-600 hover:text-white text-red-500 px-6 py-3 rounded-lg font-medium transition-colors">
+							className="bg-transparent border border-red-600 hover:bg-red-600 hover:text-white text-red-500 px-8 py-4 font-bold uppercase tracking-wider transition-colors text-sm">
 							Join Beta
 						</Link>
 						<Link
 							to="/partners"
-							className="bg-transparent border border-gray-600 hover:border-red-600 hover:text-red-500 text-gray-300 px-6 py-3 rounded-lg font-medium transition-colors">
+							className="bg-transparent border border-gray-600 hover:border-red-600 hover:text-red-500 text-gray-300 px-8 py-4 font-bold uppercase tracking-wider transition-colors text-sm">
 							Partner with Us
 						</Link>
 					</div>

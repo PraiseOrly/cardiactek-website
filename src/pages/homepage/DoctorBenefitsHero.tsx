@@ -10,15 +10,23 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.13,
+      delayChildren: 0.1,
     },
   },
 }
 
 const scaleIn = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1 },
+  hidden: { opacity: 0, y: 24, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: 'circOut' as const },
+  },
 }
+
+const cardSpring = { type: 'spring' as const, stiffness: 280, damping: 26 }
 
 // ============================================================================
 // HERO COMPONENT
@@ -270,13 +278,12 @@ export function ValueProps() {
           <motion.div
             key={idx}
             variants={scaleIn}
-            whileHover={{
-              scale: 1.02,
-              y: -5,
-            }}
-            className="bg-white backdrop-blur-sm p-10 group hover:bg-gray-50 transition-all duration-300 relative overflow-hidden cursor-pointer"
+            whileHover={{ backgroundColor: '#f9fafb' }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="bg-white backdrop-blur-sm p-10 group transition-colors duration-300 relative overflow-hidden cursor-pointer"
+            style={{ willChange: 'background-color' }}
           >
-            <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity">
+            <div className="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity duration-300">
               <prop.icon
                 className="w-24 h-24 text-red-500 -mr-8 -mt-8 rotate-12"
                 strokeWidth={0.5}
@@ -284,12 +291,8 @@ export function ValueProps() {
             </div>
 
             <motion.div
-              whileHover={{
-                rotate: 360,
-              }}
-              transition={{
-                duration: 0.6,
-              }}
+              whileHover={{ scale: 1.18, rotate: 8 }}
+              transition={cardSpring}
             >
               <prop.icon
                 className="w-10 h-10 text-red-600 mb-6"

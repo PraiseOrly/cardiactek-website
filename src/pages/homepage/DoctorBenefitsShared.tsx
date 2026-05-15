@@ -15,37 +15,47 @@ export const fadeInUp = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     },
   },
 }
 
 export const staggerContainer = {
-  hidden: {
-    opacity: 0,
-  },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
+      staggerChildren: 0.13,
+      delayChildren: 0.1,
     },
   },
 }
 
+// Cards slide up and gently scale in — more elegant than the pure scale balloon
 export const scaleIn = {
-  hidden: {
-    opacity: 0,
-    scale: 0.8,
-  },
+  hidden: { opacity: 0, y: 24, scale: 0.96 },
   visible: {
     opacity: 1,
+    y: 0,
     scale: 1,
     transition: {
       duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
+      ease: 'circOut' as const,
     },
   },
+}
+
+// Shared spring configs — use these on whileHover for consistent physics
+export const cardSpring = {
+  type: 'spring' as const,
+  stiffness: 280,
+  damping: 26,
+}
+
+export const iconSpring = {
+  type: 'spring' as const,
+  stiffness: 420,
+  damping: 18,
 }
 
 // ============================================================================
@@ -82,7 +92,7 @@ export function AnimatedSection({
 // ============================================================================
 // BUTTON COMPONENT
 // ============================================================================
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onAnimationStart' | 'onDrag' | 'onDragStart' | 'onDragEnd'> {
   variant?: 'primary' | 'secondary' | 'outline'
   showIcon?: boolean
 }

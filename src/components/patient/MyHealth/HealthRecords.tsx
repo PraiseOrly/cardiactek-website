@@ -232,9 +232,19 @@ const HealthRecords: React.FC = () => {
     record.type.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  return (
+return (
     <div className="space-y-6">
-    
+      <PatientHeader
+        pageTitle="Health Records"
+        description="View and manage your complete health history"
+        headerType="records"
+        searchValue={searchTerm}
+        onSearchChange={setSearchTerm}
+        onImport={() => {}}
+        onShare={() => {}}
+        onExport={() => {}}
+      />
+
       {/* Quick Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">

@@ -17,7 +17,9 @@ import {
 } from 'lucide-react'
 import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Footer from '../../components/Homepage/Footer'
 import Navbar from '../../components/Homepage/Navbar'
+import { cardSpring } from './DoctorBenefitsShared'
 
 interface FormData {
   name: string
@@ -34,12 +36,12 @@ const fadeInUp = {
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.13, delayChildren: 0.1 } },
 }
 
 const scaleIn = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: "easeOut" as const } },
+  hidden: { opacity: 0, y: 24, scale: 0.96 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: 'circOut' as const } },
 }
 
 const ContactPage = () => {
@@ -316,8 +318,9 @@ const ContactPage = () => {
                 <motion.div
                   key={index}
                   variants={scaleIn}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  className={`bg-white backdrop-blur-sm border rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 group cursor-pointer ${
+                  whileHover={{ y: -6, boxShadow: '0 16px 32px rgba(220,38,38,0.12)' }}
+                  transition={cardSpring}
+                  className={`bg-white backdrop-blur-sm border rounded-3xl overflow-hidden shadow-card group cursor-pointer ${
                     item.urgent ? 'border-red-500/30 shadow-red-600/10' : 'border-gray-200 hover:shadow-red-600/10'
                   }`}
                 >
@@ -631,8 +634,7 @@ const ContactPage = () => {
           </div>
         </section>
       </main>
-
-      
+      <Footer />
 
       {/* Submission Modal */}
       {showModal && (
