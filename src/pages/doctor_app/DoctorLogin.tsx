@@ -10,10 +10,8 @@ const DoctorLogin: React.FC = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
-    // In a real app, this would validate credentials with a backend
-    if (email && password) {
-      navigate('/doctor-dashboard')
-    }
+    // For demo purposes, allow login with any email and password
+    navigate('/doctor-dashboard')
   }
 
   return (
@@ -54,7 +52,6 @@ const DoctorLogin: React.FC = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="doctor@example.com"
                   className="w-full pl-10 pr-4 py-2.5 border border-slate-200/60 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition-all duration-200"
-                  required
                 />
               </div>
             </div>
@@ -73,7 +70,6 @@ const DoctorLogin: React.FC = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
                   className="w-full pl-10 pr-10 py-2.5 border border-slate-200/60 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition-all duration-200"
-                  required
                 />
                 <button
                   type="button"

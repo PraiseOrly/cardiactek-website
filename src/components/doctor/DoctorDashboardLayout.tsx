@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import DashboardSidebar from "./DoctorSidebar";
+import DashboardHeader from "./DashboardHeader";
 
 interface DashboardLayoutProps {
 	children: React.ReactNode;
@@ -61,7 +62,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, userName })
 			: "Dashboard";
 
 	return (
-		<div className="min-h-screen bg-gray-50 flex flex-col">
+		<div className="min-h-screen bg-white flex flex-col">
 			<div className="flex flex-1">
 				<aside
 					ref={sidebarRef}
@@ -96,7 +97,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, userName })
 							</div>
 						</div>
 					</header>
-					<main className="flex-1 overflow-y-auto bg-gray-50 p-4 sm:p-6 lg:p-8">
+					<main className="flex-1 overflow-y-auto bg-white p-4 sm:p-6 lg:p-8">
 						{children}
 					</main>
 				</div>

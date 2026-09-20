@@ -1,6 +1,6 @@
 import { Smartphone as SmartphoneIcon } from 'lucide-react';
 import React from 'react';
-import { WearableDevices } from './index';
+import { WearableDevices } from './WearableDevices';
 
 const DevicesIntegrations: React.FC = () => {
   return (

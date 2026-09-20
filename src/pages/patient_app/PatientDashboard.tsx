@@ -203,7 +203,7 @@ export default function PatientDashboard() {
     },
   ]
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-50 to-slate-100 font-sans text-slate-900 flex">
+    <div className="min-h-screen bg-white font-sans text-slate-900 flex">
       <PatientSidebar
         activeMenuItem={activeMenuItem}
         setActiveMenuItem={setActiveMenuItem}
