@@ -28,13 +28,25 @@ import {
   User
 } from 'lucide-react'
 import { useState } from 'react'
-import { AppointmentCard } from '../../components/Patient/Appointments/AppointmentCard'
-import { MedicationItem } from '../../components/Patient/MedicationItem'
-import HealthProfile from '../../components/Patient/MyHealth/HealthProfile'
-import HealthRecords from '../../components/Patient/MyHealth/HealthRecords'
-import PatientHeader from '../../components/Patient/PatientHeader'
+import { AppointmentCard } from '../../components/patient/Appointments/AppointmentCard'
+import { MedicationItem } from '../../components/patient/MedicationItem'
+import HealthProfile from '../../components/patient/MyHealth/HealthProfile'
+import HealthRecords from '../../components/patient/MyHealth/HealthRecords'
+import Medications from '../../components/patient/MyHealth/Medications'
+import Timeline from '../../components/patient/MyHealth/Timeline'
+import PatientHeader from '../../components/patient/PatientHeader'
 import PatientSidebar from '../../components/patient/PatientSidebar'
-import { VitalCard } from '../../components/Patient/VitalCard'
+import { VitalCard } from '../../components/patient/VitalCard'
+import Diagnostics from '../../components/patient/diagnostics/Diagnostics'
+import TestsAnalysis from '../../components/patient/diagnostics/TestsAnalysis'
+import DevicesIntegrations from '../../components/patient/smart/DevicesIntegrations'
+import Profile from '../../components/patient/Profile'
+import Notifications from '../../components/patient/Notifications'
+import Security from '../../components/patient/Security'
+import Billing from '../../components/patient/Billing'
+import AppointmentsList from '../../components/patient/Appointments/AppointmentsList'
+import ScheduleAppointment from '../../components/patient/Appointments/ScheduleAppointment'
+import EmergencySOS from '../../components/patient/Appointments/EmergencySOS'
 
 export default function PatientDashboard() {
   const [activeMenuItem, setActiveMenuItem] = useState('Dashboard')
@@ -231,8 +243,47 @@ export default function PatientDashboard() {
             {/* Health Records Section */}
             {activeMenuItem === 'Health Records' && <HealthRecords />}
 
+            {/* Medications Section */}
+            {activeMenuItem === 'Medications' && <Medications />}
+
+            {/* Timeline Section */}
+            {activeMenuItem === 'Timeline' && <Timeline />}
+
+            {/* Diagnostic Tests Section */}
+            {activeMenuItem === 'Diagnostic Tests' && <Diagnostics />}
+
+            {/* Test Analysis Section */}
+            {activeMenuItem === 'Test Analysis' && <TestsAnalysis />}
+
+            {/* Devices & Integrations Section */}
+            {activeMenuItem === 'Devices & Integrations' && <DevicesIntegrations />}
+
+            {/* My Appointments Section */}
+            {activeMenuItem === 'My Appointments' && <AppointmentsList />}
+
+            {/* Schedule Appointment Section */}
+            {activeMenuItem === 'Schedule' && <ScheduleAppointment />}
+
+            {/* View All Appointments Section */}
+            {activeMenuItem === 'View All' && <AppointmentsList />}
+
+            {/* Emergency Section */}
+            {activeMenuItem === 'Emergency' && <EmergencySOS />}
+
+            {/* Notifications Section */}
+            {activeMenuItem === 'Notifications' && <Notifications />}
+
+            {/* Settings/Profile Section */}
+            {activeMenuItem === 'Settings' && <Profile />}
+
+            {/* Privacy Section */}
+            {activeMenuItem === 'Privacy' && <Security />}
+
+            {/* Billing Section */}
+            {activeMenuItem === 'Billing' && <Billing />}
+
             {/* Default Dashboard Content */}
-            {activeMenuItem !== 'Health Profile' && activeMenuItem !== 'Health Records' && (
+            {activeMenuItem === 'Dashboard' && (
               <div className="space-y-6">
                 {/* Vitals Grid */}
                 <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
